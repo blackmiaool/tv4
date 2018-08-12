@@ -32,31 +32,43 @@
     }
   ],
   "devDependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "babel-loader": "^8.0.0-beta.4",
+    "concat": "^1.0.3",
     "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9",
+    "grunt-component-io": "~0.1.0",
+    "grunt-concat-sourcemap": "~0.2",
     "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.2",
-    "mocha": "~1.11.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-markdown": "~0.3.0",
     "grunt-mocha": "~0.4",
     "grunt-mocha-test": "~0.5.0",
-    "grunt-cli": "~0.1.9",
-    "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-copy": "~0.4.1",
-    "proclaim": "1.4",
-    "mocha-unfunk-reporter": "~0.2",
-    "jshint-path-reporter": "~0.1",
-    "grunt-concat-sourcemap": "~0.2",
-    "source-map-support": "~0.1",
-    "grunt-markdown": "~0.3.0",
     "grunt-push-release": "~0.1.1",
     "grunt-regex-replace": "~0.2.5",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-util": "^3.0.8",
+    "jshint-path-reporter": "~0.1",
+    "mocha": "~1.11.0",
+    "mocha-unfunk-reporter": "~0.2",
+    "proclaim": "1.4",
     "requirejs": "~2.1.11",
-    "grunt-component-io": "~0.1.0"
+    "source-map-support": "~0.1",
+    "webpack": "^4.16.5"
   },
   "engines": {
     "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt test",
-    "prepublish": "grunt prepublish"
-  }
+    "prepublish": "npm run build",
+    "concat": "cd source && concat -o ../concat.js ../LICENSE.txt _polyfill.js uri-template-fill.js validate.js basic.js numeric.js string.js array.js object.js combinations.js hypermedia.js resolve-uri.js normalise-schema.js error-reporter.js api.js && cd ..",
+    "build": "gulp build",
+    "dev": "gulp dev"
+  },
+  "dependencies": {}
 }

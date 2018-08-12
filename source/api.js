@@ -192,6 +192,7 @@ function createApi(language) {
 			return result;
 		},
 		validate: function (data, schema, checkRecursive, banUnknownProperties) {
+			this.root = data;
 			var def = defaultErrorReporter(currentLanguage);
 			var errorReporter = customErrorReporter ? function (error, data, schema) {
 				return customErrorReporter(error, data, schema) || def(error, data, schema);
@@ -204,7 +205,7 @@ function createApi(language) {
 			var error = context.validateAll(data, schema, null, null, "");
 			if (!error && banUnknownProperties) {
 				error = context.banUnknownProperties(data, schema);
-			}
+			}			
 			this.error = error;
 			this.missing = context.missing;
 			this.valid = (error === null);
@@ -302,5 +303,4 @@ tv4.addLanguage('en-gb', ErrorMessagesDefault);
 
 //legacy property
 tv4.tv4 = tv4;
-
-return tv4; // used by _header.js to globalise.
+module.exports = tv4; // used by _header.js to globalise.
