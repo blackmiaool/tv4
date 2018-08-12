@@ -3,7 +3,7 @@ tv4.addFormat("a", {
     validator() {
         return new Promise(resolve => {
             setTimeout(() => {
-                resolve("bbb");
+                resolve();
                 // resolve();
             }, 1000);
         });        
@@ -28,7 +28,7 @@ var schema = {
     }
 };
 function main() {
-    tv4.validateMultiple(
+    tv4.validateResult(
         {
             // a: 1,
             b: 2,

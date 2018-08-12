@@ -247,6 +247,7 @@ function createApi(language) {
 				context.banUnknownProperties(data, schema);
 			}
 			return context.getFormatValidationResults().then((errors)=>{
+				errors=errors.filter(e=>e!==undefined);
 				var result = {};
 				result.errors = context.errors.concat(errors);
 				result.missing = context.missing;
