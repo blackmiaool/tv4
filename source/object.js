@@ -63,7 +63,31 @@ ValidatorContext.prototype.validateObjectRequiredProperties = function validateO
     if (schema.required !== undefined) {
         for (var i = 0; i < schema.required.length; i++) {
             var key = schema.required[i];
-            if (data[key] === undefined) {
+            var propertyCondition = schema.properties[key].condition;
+            if (propertyCondition) {
+                var conditionResult;
+                try {
+					/*jslint evil: true */
+                    conditionResult = new Function(
+                        "model",
+                        "rootModel",
+                        "parentModel",
+                        "return "+propertyCondition+";"
+                    )(this.root, this.root, data);
+                } catch (e) {
+                    console.error(e);
+                }
+                if (!conditionResult) {
+                    //skip false condition properties
+                    continue;
+                }
+            }
+
+            if (
+                data[key] === undefined ||
+                data[key] === "" ||
+                data[key] === null
+            ) {
                 var error = this.createError(
                     ErrorCodes.OBJECT_REQUIRED,
                     { key: key },
