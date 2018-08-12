@@ -191,7 +191,7 @@ function createApi(language) {
 			}
 			return result;
 		},
-		validate: function (data, schema, checkRecursive, banUnknownProperties) {
+		validate (data, schema, checkRecursive, banUnknownProperties) {
 			this.root = data;
 			var def = defaultErrorReporter(currentLanguage);
 			var errorReporter = customErrorReporter ? function (error, data, schema) {
@@ -205,18 +205,34 @@ function createApi(language) {
 			var error = context.validateAll(data, schema, null, null, "");
 			if (!error && banUnknownProperties) {
 				error = context.banUnknownProperties(data, schema);
-			}			
-			this.error = error;
-			this.missing = context.missing;
-			this.valid = (error === null);
-			return this.valid;
+			}
+
+			return new Promise((resolve)=>{
+				if(!error){
+					context.getFormatValidationResults().then((errors)=>{
+						error=errors[0];
+						handleError(error);
+					});
+				}else{
+					handleError(error);
+				}
+
+				const handleError=(error)=>{
+					
+					this.error = error;
+					this.missing = context.missing;
+					this.valid = (error === null);
+					resolve(this.valid);
+				}
+			});			
 		},
-		validateResult: function () {
-			var result = {};
-			this.validate.apply(result, arguments);
-			return result;
+		validateResult () {
+			var result = {};			
+			return this.validate.apply(result, arguments).then(()=>{
+				return result;
+			});			
 		},
-		validateMultiple: function (data, schema, checkRecursive, banUnknownProperties) {
+		validateMultiple (data, schema, checkRecursive, banUnknownProperties) {
 			var def = defaultErrorReporter(currentLanguage);
 			var errorReporter = customErrorReporter ? function (error, data, schema) {
 				return customErrorReporter(error, data, schema) || def(error, data, schema);
@@ -230,11 +246,13 @@ function createApi(language) {
 			if (banUnknownProperties) {
 				context.banUnknownProperties(data, schema);
 			}
-			var result = {};
-			result.errors = context.errors;
-			result.missing = context.missing;
-			result.valid = (result.errors.length === 0);
-			return result;
+			return context.getFormatValidationResults().then((errors)=>{
+				var result = {};
+				result.errors = context.errors.concat(errors);
+				result.missing = context.missing;
+				result.valid = (result.errors.length === 0);
+				return result;
+			});						
 		},
 		addSchema: function () {
 			return globalContext.addSchema.apply(globalContext, arguments);

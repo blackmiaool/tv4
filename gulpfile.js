@@ -74,7 +74,6 @@ gulp.task("set-build", function() {
 });
 gulp.task("dev", ["set-dev", "webpack"]);
 gulp.task("build", ["set-build", "webpack"]);
-console.log(process.argv[2]);
 if (process.argv[2] === "dev") {
     gulp.watch(["./source/**/*.js"], ["dev"]);
 }

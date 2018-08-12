@@ -1,5 +1,7 @@
 var ValidatorContext = function ValidatorContext(parent, collectMultiple, errorReporter, checkRecursive, trackUnknownProperties) {
 	this.missing = [];
+	this.currentFormatValidation = null;
+	this.formatValidationQueue = [];
 	this.missingMap = {};
 	this.formatValidators = parent ? Object.create(parent.formatValidators) : {};
 	this.schemas = parent ? Object.create(parent.schemas) : {};
@@ -30,6 +32,11 @@ var ValidatorContext = function ValidatorContext(parent, collectMultiple, errorR
 			this.definedKeywords[key] = parent.definedKeywords[key].slice(0);
 		}
 	}
+};
+ValidatorContext.prototype.getFormatValidationResults = function(){
+	const ret= Promise.all(this.formatValidationQueue);
+	this.formatValidationQueue.length=0;
+	return ret;
 };
 ValidatorContext.prototype.defineKeyword = function (keyword, keywordFunction) {
 	this.definedKeywords[keyword] = this.definedKeywords[keyword] || [];
@@ -67,6 +74,11 @@ ValidatorContext.prototype.banUnknownProperties = function (data, schema) {
 };
 
 ValidatorContext.prototype.addFormat = function (format, validator) {
+	if(typeof validator==='function'){
+		validator={
+			validator
+		};
+	}
 	if (typeof format === 'object') {
 		for (var key in format) {
 			this.addFormat(key, format[key]);
@@ -295,7 +307,27 @@ ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, 
 		this.scannedFrozen = [];
 		this.scannedFrozenSchemas = [];
 	}
-
+	if(this.currentFormatValidation){
+		const dataPathPartsThis=dataPathParts&&dataPathParts.slice()||[];
+		const schemaPathPartsThis=schemaPathParts&&schemaPathParts.slice()||[];
+		this.formatValidationQueue.push(this.currentFormatValidation.then((error)=>{
+			if (!error) {
+				return ;
+			}
+			const dataPathParts=dataPathPartsThis;
+			const schemaPathParts=schemaPathPartsThis;
+			while ((dataPathParts && dataPathParts.length) || (schemaPathParts && schemaPathParts.length)) {
+				var dataPart = (dataPathParts && dataPathParts.length) ? "" + dataPathParts.pop() : null;
+				var schemaPart = (schemaPathParts && schemaPathParts.length) ? "" + schemaPathParts.pop() : null;
+				if (error) {
+					error = error.prefixWith(dataPart, schemaPart);
+				}
+				this.prefixErrors(errorCount, dataPart, schemaPart);
+			}	
+			return error;			
+		}));
+		this.currentFormatValidation=null;
+	}
 	if (error || errorCount !== this.errors.length) {
 		while ((dataPathParts && dataPathParts.length) || (schemaPathParts && schemaPathParts.length)) {
 			var dataPart = (dataPathParts && dataPathParts.length) ? "" + dataPathParts.pop() : null;
@@ -315,16 +347,60 @@ ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, 
 
 	return this.handleError(error);
 };
+const asyncValidateFormatCache={};
 ValidatorContext.prototype.validateFormat = function (data, schema) {
-	if (typeof schema.format !== 'string' || !this.formatValidators[schema.format]) {
+	if (typeof schema.format !== 'string') {
 		return null;
 	}
-	var errorMessage = this.formatValidators[schema.format].call(null, data, schema);
-	if (typeof errorMessage === 'string' || typeof errorMessage === 'number') {
-		return this.createError(ErrorCodes.FORMAT_CUSTOM, {message: errorMessage}, '', '/format', null, data, schema);
-	} else if (errorMessage && typeof errorMessage === 'object') {
-		return this.createError(ErrorCodes.FORMAT_CUSTOM, {message: errorMessage.message || "?"}, errorMessage.dataPath || '', errorMessage.schemaPath || "/format", null, data, schema);
+	let formatValidator = this.formatValidators[schema.format];
+	if (!formatValidator) {		
+		return null;
 	}
+	this.currentFormatValidation = new Promise((resolve) => {
+		
+		const handleErrorMessage = (errorMessage) => {
+			if (typeof errorMessage === 'string' || typeof errorMessage === 'number') {
+				resolve(this.createError(ErrorCodes.FORMAT_CUSTOM, { message: errorMessage }, '', '/format', null, data, schema));
+			} else if (errorMessage && typeof errorMessage === 'object') {
+				resolve(this.createError(ErrorCodes.FORMAT_CUSTOM, { message: errorMessage.message || "?" }, errorMessage.dataPath || '', errorMessage.schemaPath || "/format", null, data, schema));
+			} else {
+				resolve(null);
+			}
+		}
+
+		let cache = false;
+		cache = formatValidator.cache;
+		formatValidator = formatValidator.validator;
+		
+
+		function getErrorMessage(cb) {
+			const errorMessage = formatValidator.call(null, data, schema);
+			if (errorMessage instanceof Promise) {
+				errorMessage.then((errorMessage) => {
+					cb(errorMessage);
+				});
+			} else {
+				cb(errorMessage);
+			}
+		}
+		if (cache) {
+			const cacheKey = `${JSON.stringify(data)}$${JSON.stringify(schema)}`;
+			if (asyncValidateFormatCache[cacheKey] === undefined) {
+				getErrorMessage(function (errorMessage) {
+					asyncValidateFormatCache[cacheKey] = errorMessage;
+					handleErrorMessage(errorMessage);
+				});
+			} else {
+				handleErrorMessage(asyncValidateFormatCache[cacheKey]);
+			}
+		} else {
+			getErrorMessage(function (errorMessage) {
+				handleErrorMessage(errorMessage);
+			});
+		}
+
+
+	});
 	return null;
 };
 ValidatorContext.prototype.validateDefinedKeywords = function (data, schema, dataPointerPath) {
