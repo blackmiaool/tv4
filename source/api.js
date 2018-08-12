@@ -221,7 +221,7 @@ function createApi(language) {
 					
 					this.error = error;
 					this.missing = context.missing;
-					this.valid = (error === null);
+					this.valid = (error === null||error === undefined);
 					resolve(this.valid);
 				}
 			});			
