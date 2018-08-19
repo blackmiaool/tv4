@@ -15,13 +15,8 @@ function defaultErrorReporter(language) {
             schema,
             form: schema.form || {}
         });
-        let prefix;
-        if (schema.title) {
-            prefix = schema.title + ': ';
-        } else {
-            prefix = '';
-        }
-        return prefix + messageTemplate.replace(/\{([^{}]*)\}/g, function (whole, varName) {
+
+        return messageTemplate.replace(/\{([^{}]*)\}/g, function (whole, varName) {
             var subValue = get(messageParams, varName);
             if (typeof subValue === 'string' || typeof subValue === 'number') {
                 return subValue;
