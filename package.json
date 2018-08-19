@@ -1,6 +1,6 @@
 {
   "name": "tv4",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "author": "Geraint Luff",
   "description": "A public domain JSON Schema validator for JavaScript",
   "keywords": [
@@ -70,5 +70,7 @@
     "build": "gulp build",
     "dev": "gulp dev"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
 }

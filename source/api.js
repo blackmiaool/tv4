@@ -27,6 +27,7 @@ var ErrorCodes = {
 	ARRAY_LENGTH_LONG: 401,
 	ARRAY_UNIQUE: 402,
 	ARRAY_ADDITIONAL_ITEMS: 403,
+	ARRAY_LENGTH_NOT_MATCH: 404,
 	// Custom/user-defined errors
 	FORMAT_CUSTOM: 500,
 	KEYWORD_CUSTOM: 501,
@@ -64,8 +65,9 @@ var ErrorMessagesDefault = {
 	OBJECT_ADDITIONAL_PROPERTIES: "Additional properties not allowed",
 	OBJECT_DEPENDENCY_KEY: "Dependency failed - key must exist: {missing} (due to key: {key})",
 	// Array errors
-	ARRAY_LENGTH_SHORT: "Array is too short ({length}), minimum {minimum}",
-	ARRAY_LENGTH_LONG: "Array is too long ({length}), maximum {maximum}",
+	ARRAY_LENGTH_SHORT: "Array is too short ({data.length}), minimum {schema.minItems}",
+	ARRAY_LENGTH_LONG: "Array is too long ({data.length}), maximum {schema.maxItems}",
+	ARRAY_LENGTH_NOT_MATCH:"Array length should be {schema.minItems}, current:{data.length}",
 	ARRAY_UNIQUE: "Array items are not unique (indices {match1} and {match2})",
 	ARRAY_ADDITIONAL_ITEMS: "Additional items not allowed",
 	// Format errors
@@ -208,15 +210,6 @@ function createApi(language) {
 			}
 
 			return new Promise((resolve)=>{
-				if(!error){
-					context.getFormatValidationResults().then((errors)=>{
-						error=errors[0];
-						handleError(error);
-					});
-				}else{
-					handleError(error);
-				}
-
 				const handleError=(error)=>{
 					
 					this.error = error;
@@ -224,6 +217,14 @@ function createApi(language) {
 					this.valid = (error === null||error === undefined);
 					resolve(this.valid);
 				}
+				if(!error){
+					context.getFormatValidationResults().then((errors)=>{
+						error=errors[0];
+						handleError(error);
+					});
+				}else{
+					handleError(error);
+				}				
 			});			
 		},
 		validateResult () {

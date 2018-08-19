@@ -6,6 +6,8 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "tv4.js":true,"tv4.min.js":true,
-        "try":true
+        "try":true,
+        ".history":true,
+        "test":true
     }
 }

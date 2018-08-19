@@ -10,6 +10,14 @@ ValidatorContext.prototype.validateArray = function validateArray(data, schema, 
 
 ValidatorContext.prototype.validateArrayLength = function validateArrayLength(data, schema) {
 	var error;
+	if(schema.minItems&&schema.minItems===schema.maxItems){
+		if (data.length !== schema.minItems) {
+			error = this.createError(ErrorCodes.ARRAY_LENGTH_NOT_MATCH, {length: data.length, minimum: schema.minItems}, '', '/minItems', null, data, schema);
+			if (this.handleError(error)) {
+				return error;
+			}
+		}
+	}
 	if (schema.minItems !== undefined) {
 		if (data.length < schema.minItems) {
 			error = this.createError(ErrorCodes.ARRAY_LENGTH_SHORT, {length: data.length, minimum: schema.minItems}, '', '/minItems', null, data, schema);
