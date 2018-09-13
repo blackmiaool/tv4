@@ -375,7 +375,7 @@ ValidatorContext.prototype.validateFormat = function (data, schema) {
 
 		function getErrorMessage(cb) {
 			const errorMessage = formatValidator.call(null, data, schema);
-			if (errorMessage instanceof Promise) {
+			if (errorMessage&&errorMessage.then) {
 				errorMessage.then((errorMessage) => {
 					cb(errorMessage);
 				});
