@@ -1,7 +1,7 @@
 const tv4 = require("./tv4.js");
 const cn = require("./lang/zh-CN");
 // tv4.addLanguage(cn);
-// tv4.language("zh-CN");
+tv4.language("zh-CN");
 tv4.addFormat("a", {
     validator() {
         return new Promise(resolve => {

@@ -135,8 +135,9 @@ function isTrustedUrl(baseUrl, testUrl) {
 	return false;
 }
 
-var languages = {};
+
 function createApi(language) {
+	var languages = {};
 	var globalContext = new ValidatorContext();
 	var currentLanguage;
 	var customErrorReporter;
@@ -312,7 +313,8 @@ function createApi(language) {
 		normSchema: normSchema,
 		resolveUrl: resolveUrl,
 		getDocumentUri: getDocumentUri,
-		errorCodes: ErrorCodes
+		errorCodes: ErrorCodes,
+		languages
 	};
 	api.language(language || 'en');
 	return api;
