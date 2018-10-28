@@ -1,1 +1,3815 @@
-!function(t,r){if("object"==typeof exports&&"object"==typeof module)module.exports=r();else if("function"==typeof define&&define.amd)define([],r);else{var e=r();for(var n in e)("object"==typeof exports?exports:t)[n]=e[n]}}(this,function(){return function(t){var r={};function e(n){if(r[n])return r[n].exports;var i=r[n]={i:n,l:!1,exports:{}};return t[n].call(i.exports,i,i.exports,e),i.l=!0,i.exports}return e.m=t,e.c=r,e.d=function(t,r,n){e.o(t,r)||Object.defineProperty(t,r,{enumerable:!0,get:n})},e.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},e.t=function(t,r){if(1&r&&(t=e(t)),8&r)return t;if(4&r&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(e.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&r&&"string"!=typeof t)for(var i in t)e.d(n,i,function(r){return t[r]}.bind(null,i));return n},e.n=function(t){var r=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(r,"a",r),r},e.o=function(t,r){return Object.prototype.hasOwnProperty.call(t,r)},e.p="",e(e.s=10)}([function(t,r,e){var n=e(8)(Object,"create");t.exports=n},function(t,r,e){var n=e(40);t.exports=function(t,r){for(var e=t.length;e--;)if(n(t[e][0],r))return e;return-1}},function(t,r,e){var n=e(46);t.exports=function(t,r){var e=t.__data__;return n(r)?e["string"==typeof r?"string":"hash"]:e.map}},function(t,r){var e=Array.isArray;t.exports=e},function(t,r,e){var n=e(7),i=e(19),o="[object Symbol]";t.exports=function(t){return"symbol"==typeof t||i(t)&&n(t)==o}},function(t,r,e){var n=e(6).Symbol;t.exports=n},function(t,r,e){var n=e(15),i="object"==typeof self&&self&&self.Object===Object&&self,o=n||i||Function("return this")();t.exports=o},function(t,r,e){var n=e(5),i=e(17),o=e(18),a="[object Null]",s="[object Undefined]",l=n?n.toStringTag:void 0;t.exports=function(t){return null==t?void 0===t?s:a:l&&l in Object(t)?i(t):o(t)}},function(t,r,e){var n=e(27),i=e(32);t.exports=function(t,r){var e=i(t,r);return n(e)?e:void 0}},function(t,r){t.exports=function(t){var r=typeof t;return null!=t&&("object"==r||"function"==r)}},function(t,r,e){"use strict";function n(t){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}Object.keys||(Object.keys=function(){var t=Object.prototype.hasOwnProperty,r=!{toString:null}.propertyIsEnumerable("toString"),e=["toString","toLocaleString","valueOf","hasOwnProperty","isPrototypeOf","propertyIsEnumerable","constructor"],i=e.length;return function(o){if("object"!==n(o)&&"function"!=typeof o||null===o)throw new TypeError("Object.keys called on non-object");var a=[];for(var s in o)t.call(o,s)&&a.push(s);if(r)for(var l=0;l<i;l++)t.call(o,e[l])&&a.push(e[l]);return a}}()),Object.create||(Object.create=function(){function t(){}return function(r){if(1!==arguments.length)throw new Error("Object.create implementation only accepts one parameter.");return t.prototype=r,new t}}()),Array.isArray||(Array.isArray=function(t){return"[object Array]"===Object.prototype.toString.call(t)}),Array.prototype.indexOf||(Array.prototype.indexOf=function(t){if(null===this)throw new TypeError;var r=Object(this),e=r.length>>>0;if(0===e)return-1;var n=0;if(arguments.length>1&&((n=Number(arguments[1]))!=n?n=0:0!==n&&n!==1/0&&n!==-1/0&&(n=(n>0||-1)*Math.floor(Math.abs(n)))),n>=e)return-1;for(var i=n>=0?n:Math.max(e-Math.abs(n),0);i<e;i++)if(i in r&&r[i]===t)return i;return-1}),Object.isFrozen||(Object.isFrozen=function(t){for(var r="tv4_test_frozen_key";t.hasOwnProperty(r);)r+=Math.random();try{return t[r]=!0,delete t[r],!1}catch(t){return!0}});var i={"+":!0,"#":!0,".":!0,"/":!0,";":!0,"?":!0,"&":!0},o={"*":!0};function a(t){return encodeURI(t).replace(/%25[0-9][0-9]/g,function(t){return"%"+t.substring(3)})}function s(t){var r="";i[t.charAt(0)]&&(r=t.charAt(0),t=t.substring(1));var e="",s="",l=!0,u=!1,h=!1;"+"===r?l=!1:"."===r?(s=".",e="."):"/"===r?(s="/",e="/"):"#"===r?(s="#",l=!1):";"===r?(s=";",e=";",u=!0,h=!0):"?"===r?(s="?",e="&",u=!0):"&"===r&&(s="&",e="&",u=!0);for(var c=[],f=t.split(","),p=[],d={},m=0;m<f.length;m++){var v=f[m],y=null;if(-1!==v.indexOf(":")){var g=v.split(":");v=g[0],y=parseInt(g[1],10)}for(var E={};o[v.charAt(v.length-1)];)E[v.charAt(v.length-1)]=!0,v=v.substring(0,v.length-1);var _={truncate:y,name:v,suffices:E};p.push(_),d[v]=_,c.push(v)}var O=function(t){for(var r="",i=0,o=0;o<p.length;o++){var c=p[o],f=t(c.name);if(null===f||void 0===f||Array.isArray(f)&&0===f.length||"object"===n(f)&&0===Object.keys(f).length)i++;else if(r+=o===i?s:e||",",Array.isArray(f)){u&&(r+=c.name+"=");for(var d=0;d<f.length;d++)d>0&&(r+=c.suffices["*"]&&e||",",c.suffices["*"]&&u&&(r+=c.name+"=")),r+=l?encodeURIComponent(f[d]).replace(/!/g,"%21"):a(f[d])}else if("object"===n(f)){u&&!c.suffices["*"]&&(r+=c.name+"=");var m=!0;for(var v in f)m||(r+=c.suffices["*"]&&e||","),m=!1,r+=l?encodeURIComponent(v).replace(/!/g,"%21"):a(v),r+=c.suffices["*"]?"=":",",r+=l?encodeURIComponent(f[v]).replace(/!/g,"%21"):a(f[v])}else u&&(r+=c.name,h&&""===f||(r+="=")),null!=c.truncate&&(f=f.substring(0,c.truncate)),r+=l?encodeURIComponent(f).replace(/!/g,"%21"):a(f)}return r};return O.varNames=c,{prefix:s,substitution:O}}function l(t){if(!(this instanceof l))return new l(t);for(var r=t.split("{"),e=[r.shift()],n=[],i=[],o=[];r.length>0;){var a=r.shift(),u=a.split("}")[0],h=a.substring(u.length+1),c=s(u);i.push(c.substitution),n.push(c.prefix),e.push(h),o=o.concat(c.substitution.varNames)}this.fill=function(t){for(var r=e[0],n=0;n<i.length;n++){r+=(0,i[n])(t),r+=e[n+1]}return r},this.varNames=o,this.template=t}l.prototype={toString:function(){return this.template},fillFromObject:function(t){return this.fill(function(r){return t[r]})}};var u=function(t,r,e,n,i,o){if(this.missing=[],this.currentFormatValidation=null,this.formatValidationQueue=[],this.missingMap={},this.formatValidators=r?Object.create(r.formatValidators):{},this.schemas=r?Object.create(r.schemas):{},this.collectMultiple=e,this.errors=[],this.handleError=e?this.collectError:this.returnError,i&&(this.checkRecursive=!0,this.scanned=[],this.scannedFrozen=[],this.scannedFrozenSchemas=[],this.scannedFrozenValidationErrors=[],this.validatedSchemasKey="tv4_validation_id",this.validationErrorsKey="tv4_validation_errors_id"),o&&(this.trackUnknownProperties=!0,this.knownPropertyPaths={},this.unknownPropertyPaths={}),this.errorReporter=n||E("en",t),"string"==typeof this.errorReporter)throw new Error("debug");if(this.definedKeywords={},r)for(var a in r.definedKeywords)this.definedKeywords[a]=r.definedKeywords[a].slice(0)};u.prototype.getFormatValidationResults=function(){var t=Promise.all(this.formatValidationQueue);return this.formatValidationQueue.length=0,t},u.prototype.defineKeyword=function(t,r){this.definedKeywords[t]=this.definedKeywords[t]||[],this.definedKeywords[t].push(r)},u.prototype.createError=function(t,r,e,n,i,o,a){var s=new b(t,r,e,n,i);return s.message=this.errorReporter(s,o,a),s},u.prototype.returnError=function(t){return t},u.prototype.collectError=function(t){return t&&this.errors.push(t),null},u.prototype.prefixErrors=function(t,r,e){for(var n=t;n<this.errors.length;n++)this.errors[n]=this.errors[n].prefixWith(r,e);return this},u.prototype.banUnknownProperties=function(t,r){for(var e in this.unknownPropertyPaths){var n=this.createError(_.UNKNOWN_PROPERTY,{path:e},e,"",null,t,r),i=this.handleError(n);if(i)return i}return null},u.prototype.addFormat=function(t,r){if("function"==typeof r&&(r={validator:r}),"object"===n(t)){for(var e in t)this.addFormat(e,t[e]);return this}this.formatValidators[t]=r},u.prototype.resolveRefs=function(t,r){if(void 0!==t.$ref){if((r=r||{})[t.$ref])return this.createError(_.CIRCULAR_REFERENCE,{urls:Object.keys(r).join(", ")},"","",null,void 0,t);r[t.$ref]=!0,t=this.getSchema(t.$ref,r)}return t},u.prototype.getSchema=function(t,r){var e;if(void 0!==this.schemas[t])return e=this.schemas[t],this.resolveRefs(e,r);var i=t,o="";if(-1!==t.indexOf("#")&&(o=t.substring(t.indexOf("#")+1),i=t.substring(0,t.indexOf("#"))),"object"===n(this.schemas[i])){e=this.schemas[i];var a=decodeURIComponent(o);if(""===a)return this.resolveRefs(e,r);if("/"!==a.charAt(0))return;for(var s=a.split("/").slice(1),l=0;l<s.length;l++){var u=s[l].replace(/~1/g,"/").replace(/~0/g,"~");if(void 0===e[u]){e=void 0;break}e=e[u]}if(void 0!==e)return this.resolveRefs(e,r)}void 0===this.missing[i]&&(this.missing.push(i),this.missing[i]=i,this.missingMap[i]=i)},u.prototype.searchSchemas=function(t,r){if(Array.isArray(t))for(var e=0;e<t.length;e++)this.searchSchemas(t[e],r);else if(t&&"object"===n(t))for(var i in"string"==typeof t.id&&function(t,r){if(r.substring(0,t.length)===t){var e=r.substring(t.length);if(r.length>0&&"/"===r.charAt(t.length-1)||"#"===e.charAt(0)||"?"===e.charAt(0))return!0}return!1}(r,t.id)&&void 0===this.schemas[t.id]&&(this.schemas[t.id]=t),t)if("enum"!==i)if("object"===n(t[i]))this.searchSchemas(t[i],r);else if("$ref"===i){var o=v(t[i]);o&&void 0===this.schemas[o]&&void 0===this.missingMap[o]&&(this.missingMap[o]=o)}},u.prototype.addSchema=function(t,r){if("string"!=typeof t||void 0===r){if("object"!==n(t)||"string"!=typeof t.id)return;t=(r=t).id}t===v(t)+"#"&&(t=v(t)),this.schemas[t]=r,delete this.missingMap[t],y(r,t),this.searchSchemas(r,t)},u.prototype.getSchemaMap=function(){var t={};for(var r in this.schemas)t[r]=this.schemas[r];return t},u.prototype.getSchemaUris=function(t){var r=[];for(var e in this.schemas)t&&!t.test(e)||r.push(e);return r},u.prototype.getMissingUris=function(t){var r=[];for(var e in this.missingMap)t&&!t.test(e)||r.push(e);return r},u.prototype.dropSchemas=function(){this.schemas={},this.reset()},u.prototype.reset=function(){this.missing=[],this.missingMap={},this.errors=[]},u.prototype.validateAll=function(t,r,e,i,o){var a,s=this;if(!(r=this.resolveRefs(r)))return null;if(r instanceof b)return this.errors.push(r),r;var l,u=this.errors.length,h=null,c=null;if(this.checkRecursive&&t&&"object"===n(t)){if(a=!this.scanned.length,t[this.validatedSchemasKey]){var f=t[this.validatedSchemasKey].indexOf(r);if(-1!==f)return this.errors=this.errors.concat(t[this.validationErrorsKey][f]),null}if(Object.isFrozen(t)&&-1!==(l=this.scannedFrozen.indexOf(t))){var p=this.scannedFrozenSchemas[l].indexOf(r);if(-1!==p)return this.errors=this.errors.concat(this.scannedFrozenValidationErrors[l][p]),null}if(this.scanned.push(t),Object.isFrozen(t))-1===l&&(l=this.scannedFrozen.length,this.scannedFrozen.push(t),this.scannedFrozenSchemas.push([])),h=this.scannedFrozenSchemas[l].length,this.scannedFrozenSchemas[l][h]=r,this.scannedFrozenValidationErrors[l][h]=[];else{if(!t[this.validatedSchemasKey])try{Object.defineProperty(t,this.validatedSchemasKey,{value:[],configurable:!0}),Object.defineProperty(t,this.validationErrorsKey,{value:[],configurable:!0})}catch(r){t[this.validatedSchemasKey]=[],t[this.validationErrorsKey]=[]}c=t[this.validatedSchemasKey].length,t[this.validatedSchemasKey][c]=r,t[this.validationErrorsKey][c]=[]}}var d=this.errors.length,m=this.validateBasic(t,r,o)||this.validateNumeric(t,r,o)||this.validateString(t,r,o)||this.validateArray(t,r,o)||this.validateObject(t,r,o)||this.validateCombinations(t,r,o)||this.validateHypermedia(t,r,o)||this.validateFormat(t,r,o)||this.validateDefinedKeywords(t,r,o)||null;if(a){for(;this.scanned.length;){delete this.scanned.pop()[this.validatedSchemasKey]}this.scannedFrozen=[],this.scannedFrozenSchemas=[]}if(this.currentFormatValidation){var v=e&&e.slice()||[],y=i&&i.slice()||[];this.formatValidationQueue.push(this.currentFormatValidation.then(function(t){if(t){for(var r=v,e=y;r&&r.length||e&&e.length;){var n=r&&r.length?""+r.pop():null,i=e&&e.length?""+e.pop():null;t&&(t=t.prefixWith(n,i)),s.prefixErrors(d,n,i)}return t}})),this.currentFormatValidation=null}if(m||d!==this.errors.length)for(;e&&e.length||i&&i.length;){var g=e&&e.length?""+e.pop():null,E=i&&i.length?""+i.pop():null;m&&(m=m.prefixWith(g,E)),this.prefixErrors(d,g,E)}return null!==h?this.scannedFrozenValidationErrors[l][h]=this.errors.slice(u):null!==c&&(t[this.validationErrorsKey][c]=this.errors.slice(u)),this.handleError(m)};var h={};function c(t,r){if(t===r)return!0;if(t&&r&&"object"===n(t)&&"object"===n(r)){if(Array.isArray(t)!==Array.isArray(r))return!1;if(Array.isArray(t)){if(t.length!==r.length)return!1;for(var e=0;e<t.length;e++)if(!c(t[e],r[e]))return!1}else{var i;for(i in t)if(void 0===r[i]&&void 0!==t[i])return!1;for(i in r)if(void 0===t[i]&&void 0!==r[i])return!1;for(i in t)if(!c(t[i],r[i]))return!1}return!0}return!1}u.prototype.validateFormat=function(t,r){var e=this;if("string"!=typeof r.format)return null;var i=this.formatValidators[r.format];return i?(this.currentFormatValidation=new Promise(function(o){var a,s=function(i){"string"==typeof i||"number"==typeof i?o(e.createError(_.FORMAT_CUSTOM,{message:i},"","/format",null,t,r)):i&&"object"===n(i)?o(e.createError(_.FORMAT_CUSTOM,{message:i.message||"?"},i.dataPath||"",i.schemaPath||"/format",null,t,r)):o(null)};function l(e){var n=i.call(null,t,r);n&&n.then?n.then(function(t){e(t)}):e(n)}if(a=i.cache,i=i.validator,a){var u="".concat(JSON.stringify(t),"$").concat(JSON.stringify(r));void 0===h[u]?l(function(t){h[u]=t,s(t)}):s(h[u])}else l(function(t){s(t)})}),null):null},u.prototype.validateDefinedKeywords=function(t,r,e){for(var i in this.definedKeywords)if(void 0!==r[i])for(var o=this.definedKeywords[i],a=0;a<o.length;a++){var s=(0,o[a])(t,r[i],r,e);if("string"==typeof s||"number"==typeof s)return this.createError(_.KEYWORD_CUSTOM,{key:i,message:s},"","",null,t,r).prefixWith(null,i);if(s&&"object"===n(s)){var l=s.code;if("string"==typeof l){if(!_[l])throw new Error("Undefined error code (use defineError): "+l);l=_[l]}else"number"!=typeof l&&(l=_.KEYWORD_CUSTOM);var u="object"===n(s.message)?s.message:{key:i,message:s.message||"?"},h=s.schemaPath||"/"+i.replace(/~/g,"~0").replace(/\//g,"~1");return this.createError(l,u,s.dataPath||null,h,null,t,r)}}return null},u.prototype.validateBasic=function(t,r,e){var n;return(n=this.validateType(t,r,e))?n.prefixWith(null,"type"):(n=this.validateEnum(t,r,e))?n.prefixWith(null,"type"):null},u.prototype.validateType=function(t,r){if(void 0===r.type)return null;var e=n(t);null===t?e="null":Array.isArray(t)&&(e="array");var i=r.type;Array.isArray(i)||(i=[i]);for(var o=0;o<i.length;o++){var a=i[o];if(a===e||"integer"===a&&"number"===e&&t%1==0)return null}return this.createError(_.INVALID_TYPE,{type:e,expected:i.join("/")},"","",null,t,r)},u.prototype.validateEnum=function(t,r){if(void 0===r.enum)return null;for(var e=0;e<r.enum.length;e++){if(c(t,r.enum[e]))return null}return this.createError(_.ENUM_MISMATCH,{value:"undefined"!=typeof JSON?JSON.stringify(t):t},"","",null,t,r)},u.prototype.validateNumeric=function(t,r,e){return this.validateMultipleOf(t,r,e)||this.validateMinMax(t,r,e)||this.validateNaN(t,r,e)||null};var f=Math.pow(2,-51),p=1-f;function d(t){var r=String(t).replace(/^\s+|\s+$/g,"").match(/^([^:\/?#]+:)?(\/\/(?:[^:@]*(?::[^:@]*)?@)?(([^:\/?#]*)(?::(\d*))?))?([^?#]*)(\?[^#]*)?(#[\s\S]*)?/);return r?{href:r[0]||"",protocol:r[1]||"",authority:r[2]||"",host:r[3]||"",hostname:r[4]||"",port:r[5]||"",pathname:r[6]||"",search:r[7]||"",hash:r[8]||""}:null}function m(t,r){return r=d(r||""),t=d(t||""),r&&t?(r.protocol||t.protocol)+(r.protocol||r.authority?r.authority:t.authority)+function(t){var r=[];return t.replace(/^(\.\.?(\/|$))+/,"").replace(/\/(\.(\/|$))+/g,"/").replace(/\/\.\.$/,"/../").replace(/\/?[^\/]*/g,function(t){"/.."===t?r.pop():r.push(t)}),r.join("").replace(/^\//,"/"===t.charAt(0)?"/":"")}(r.protocol||r.authority||"/"===r.pathname.charAt(0)?r.pathname:r.pathname?(t.authority&&!t.pathname?"/":"")+t.pathname.slice(0,t.pathname.lastIndexOf("/")+1)+r.pathname:t.pathname)+(r.protocol||r.authority||r.pathname?r.search:r.search||t.search)+r.hash:null}function v(t){return t.split("#")[0]}function y(t,r){if(t&&"object"===n(t))if(void 0===r?r=t.id:"string"==typeof t.id&&(r=m(r,t.id),t.id=r),Array.isArray(t))for(var e=0;e<t.length;e++)y(t[e],r);else for(var i in"string"==typeof t.$ref&&(t.$ref=m(r,t.$ref)),t)"enum"!==i&&y(t[i],r)}u.prototype.validateMultipleOf=function(t,r){var e=r.multipleOf||r.divisibleBy;if(void 0===e)return null;if("number"==typeof t){var n=t/e%1;if(n>=f&&n<p)return this.createError(_.NUMBER_MULTIPLE_OF,{value:t,multipleOf:e},"","",null,t,r)}return null},u.prototype.validateMinMax=function(t,r){if("number"!=typeof t)return null;if(void 0!==r.minimum){if(t<r.minimum)return this.createError(_.NUMBER_MINIMUM,{value:t,minimum:r.minimum},"","/minimum",null,t,r);if(r.exclusiveMinimum&&t===r.minimum)return this.createError(_.NUMBER_MINIMUM_EXCLUSIVE,{value:t,minimum:r.minimum},"","/exclusiveMinimum",null,t,r)}if(void 0!==r.maximum){if(t>r.maximum)return this.createError(_.NUMBER_MAXIMUM,{value:t,maximum:r.maximum},"","/maximum",null,t,r);if(r.exclusiveMaximum&&t===r.maximum)return this.createError(_.NUMBER_MAXIMUM_EXCLUSIVE,{value:t,maximum:r.maximum},"","/exclusiveMaximum",null,t,r)}return null},u.prototype.validateNaN=function(t,r){return"number"!=typeof t?null:!0===isNaN(t)||t===1/0||t===-1/0?this.createError(_.NUMBER_NOT_A_NUMBER,{value:t},"","/type",null,t,r):null},u.prototype.validateString=function(t,r,e){return this.validateStringLength(t,r,e)||this.validateStringPattern(t,r,e)||null},u.prototype.validateStringLength=function(t,r){return"string"!=typeof t?null:void 0!==r.minLength&&t.length<r.minLength?this.createError(_.STRING_LENGTH_SHORT,{length:t.length,minimum:r.minLength},"","/minLength",null,t,r):void 0!==r.maxLength&&t.length>r.maxLength?this.createError(_.STRING_LENGTH_LONG,{length:t.length,maximum:r.maxLength},"","/maxLength",null,t,r):null},u.prototype.validateStringPattern=function(t,r){if("string"!=typeof t||"string"!=typeof r.pattern&&!(r.pattern instanceof RegExp))return null;var e;if(r.pattern instanceof RegExp)e=r.pattern;else{var n,i="",o=r.pattern.match(/^\/(.+)\/([img]*)$/);o?(n=o[1],i=o[2]):n=r.pattern,e=new RegExp(n,i)}return e.test(t)?null:this.createError(_.STRING_PATTERN,{pattern:r.pattern},"","/pattern",null,t,r)},u.prototype.validateArray=function(t,r,e){return Array.isArray(t)&&(this.validateArrayLength(t,r,e)||this.validateArrayUniqueItems(t,r,e)||this.validateArrayItems(t,r,e))||null},u.prototype.validateArrayLength=function(t,r){var e;return r.minItems&&r.minItems===r.maxItems&&t.length!==r.minItems&&(e=this.createError(_.ARRAY_LENGTH_NOT_MATCH,{length:t.length,minimum:r.minItems},"","/minItems",null,t,r),this.handleError(e))?e:void 0!==r.minItems&&t.length<r.minItems&&(e=this.createError(_.ARRAY_LENGTH_SHORT,{length:t.length,minimum:r.minItems},"","/minItems",null,t,r),this.handleError(e))?e:void 0!==r.maxItems&&t.length>r.maxItems&&(e=this.createError(_.ARRAY_LENGTH_LONG,{length:t.length,maximum:r.maxItems},"","/maxItems",null,t,r),this.handleError(e))?e:null},u.prototype.validateArrayUniqueItems=function(t,r){if(r.uniqueItems)for(var e=0;e<t.length;e++)for(var n=e+1;n<t.length;n++)if(c(t[e],t[n])){var i=this.createError(_.ARRAY_UNIQUE,{match1:e,match2:n},"","/uniqueItems",null,t,r);if(this.handleError(i))return i}return null},u.prototype.validateArrayItems=function(t,r,e){if(void 0===r.items)return null;var n,i;if(Array.isArray(r.items)){for(i=0;i<t.length;i++)if(i<r.items.length){if(n=this.validateAll(t[i],r.items[i],[i],["items",i],e+"/"+i))return n}else if(void 0!==r.additionalItems)if("boolean"==typeof r.additionalItems){if(!r.additionalItems&&(n=this.createError(_.ARRAY_ADDITIONAL_ITEMS,{},"/"+i,"/additionalItems",null,t,r),this.handleError(n)))return n}else if(n=this.validateAll(t[i],r.additionalItems,[i],["additionalItems"],e+"/"+i))return n}else for(i=0;i<t.length;i++)if(n=this.validateAll(t[i],r.items,[i],["items"],e+"/"+i))return n;return null},u.prototype.validateObject=function(t,r,e){return"object"!==n(t)||null===t||Array.isArray(t)?null:this.validateObjectMinMaxProperties(t,r,e)||this.validateObjectRequiredProperties(t,r,e)||this.validateObjectProperties(t,r,e)||this.validateObjectDependencies(t,r,e)||null},u.prototype.validateObjectMinMaxProperties=function(t,r){var e,n=Object.keys(t);return void 0!==r.minProperties&&n.length<r.minProperties&&(e=this.createError(_.OBJECT_PROPERTIES_MINIMUM,{propertyCount:n.length,minimum:r.minProperties},"","/minProperties",null,t,r),this.handleError(e))?e:void 0!==r.maxProperties&&n.length>r.maxProperties&&(e=this.createError(_.OBJECT_PROPERTIES_MAXIMUM,{propertyCount:n.length,maximum:r.maxProperties},"","/maxProperties",null,t,r),this.handleError(e))?e:null},u.prototype.validateObjectRequiredProperties=function(t,r){if(void 0!==r.required)for(var e=0;e<r.required.length;e++){var n=r.required[e],i=r.properties[n].condition;if(i){var o;try{o=new Function("model","rootModel","parentModel","return "+i+";")(this.root,this.root,t)}catch(t){console.error(t)}if(!o)continue}if(void 0===t[n]||""===t[n]||null===t[n]){var a=this.createError(_.OBJECT_REQUIRED,{key:n},"","/required/"+e,null,t,r);if(this.handleError(a))return a}}return null},u.prototype.validateObjectProperties=function(t,r,e){var n;for(var i in t){var o=e+"/"+i.replace(/~/g,"~0").replace(/\//g,"~1"),a=!1;if(void 0!==r.properties&&void 0!==r.properties[i]&&(a=!0,n=this.validateAll(t[i],r.properties[i],[i],["properties",i],o)))return n;if(void 0!==r.patternProperties)for(var s in r.patternProperties){if(new RegExp(s).test(i)&&(a=!0,n=this.validateAll(t[i],r.patternProperties[s],[i],["patternProperties",s],o)))return n}if(a)this.trackUnknownProperties&&(this.knownPropertyPaths[o]=!0,delete this.unknownPropertyPaths[o]);else if(void 0!==r.additionalProperties){if(this.trackUnknownProperties&&(this.knownPropertyPaths[o]=!0,delete this.unknownPropertyPaths[o]),"boolean"==typeof r.additionalProperties){if(!r.additionalProperties&&(n=this.createError(_.OBJECT_ADDITIONAL_PROPERTIES,{key:i},"","/additionalProperties",null,t,r).prefixWith(i,null),this.handleError(n)))return n}else if(n=this.validateAll(t[i],r.additionalProperties,[i],["additionalProperties"],o))return n}else this.trackUnknownProperties&&!this.knownPropertyPaths[o]&&(this.unknownPropertyPaths[o]=!0)}return null},u.prototype.validateObjectDependencies=function(t,r,e){var n;if(void 0!==r.dependencies)for(var i in r.dependencies)if(void 0!==t[i]){var o=r.dependencies[i];if("string"==typeof o){if(void 0===t[o]&&(n=this.createError(_.OBJECT_DEPENDENCY_KEY,{key:i,missing:o},"","",null,t,r).prefixWith(null,i).prefixWith(null,"dependencies"),this.handleError(n)))return n}else if(Array.isArray(o))for(var a=0;a<o.length;a++){var s=o[a];if(void 0===t[s]&&(n=this.createError(_.OBJECT_DEPENDENCY_KEY,{key:i,missing:s},"","/"+a,null,t,r).prefixWith(null,i).prefixWith(null,"dependencies"),this.handleError(n)))return n}else if(n=this.validateAll(t,o,[],["dependencies",i],e))return n}return null},u.prototype.validateCombinations=function(t,r,e){return this.validateAllOf(t,r,e)||this.validateAnyOf(t,r,e)||this.validateOneOf(t,r,e)||this.validateNot(t,r,e)||null},u.prototype.validateAllOf=function(t,r,e){if(void 0===r.allOf)return null;for(var n,i=0;i<r.allOf.length;i++){var o=r.allOf[i];if(n=this.validateAll(t,o,[],["allOf",i],e))return n}return null},u.prototype.validateAnyOf=function(t,r,e){if(void 0===r.anyOf)return null;var n,i,o=[],a=this.errors.length;this.trackUnknownProperties&&(n=this.unknownPropertyPaths,i=this.knownPropertyPaths);for(var s=!0,l=0;l<r.anyOf.length;l++){this.trackUnknownProperties&&(this.unknownPropertyPaths={},this.knownPropertyPaths={});var u=r.anyOf[l],h=this.errors.length,c=this.validateAll(t,u,[],["anyOf",l],e);if(null===c&&h===this.errors.length){if(this.errors=this.errors.slice(0,a),this.trackUnknownProperties){for(var f in this.knownPropertyPaths)i[f]=!0,delete n[f];for(var p in this.unknownPropertyPaths)i[p]||(n[p]=!0);s=!1;continue}return null}c&&o.push(c.prefixWith(null,""+l).prefixWith(null,"anyOf"))}return this.trackUnknownProperties&&(this.unknownPropertyPaths=n,this.knownPropertyPaths=i),s?(o=o.concat(this.errors.slice(a)),this.errors=this.errors.slice(0,a),this.createError(_.ANY_OF_MISSING,{},"","/anyOf",o,t,r)):void 0},u.prototype.validateOneOf=function(t,r,e){if(void 0===r.oneOf)return null;var n,i,o=null,a=[],s=this.errors.length;this.trackUnknownProperties&&(n=this.unknownPropertyPaths,i=this.knownPropertyPaths);for(var l=0;l<r.oneOf.length;l++){this.trackUnknownProperties&&(this.unknownPropertyPaths={},this.knownPropertyPaths={});var u=r.oneOf[l],h=this.errors.length,c=this.validateAll(t,u,[],["oneOf",l],e);if(null===c&&h===this.errors.length){if(null!==o)return this.errors=this.errors.slice(0,s),this.createError(_.ONE_OF_MULTIPLE,{index1:o,index2:l},"","/oneOf",null,t,r);if(o=l,this.trackUnknownProperties){for(var f in this.knownPropertyPaths)i[f]=!0,delete n[f];for(var p in this.unknownPropertyPaths)i[p]||(n[p]=!0)}}else c&&a.push(c)}return this.trackUnknownProperties&&(this.unknownPropertyPaths=n,this.knownPropertyPaths=i),null===o?(a=a.concat(this.errors.slice(s)),this.errors=this.errors.slice(0,s),this.createError(_.ONE_OF_MISSING,{},"","/oneOf",a,t,r)):(this.errors=this.errors.slice(0,s),null)},u.prototype.validateNot=function(t,r,e){if(void 0===r.not)return null;var n,i,o=this.errors.length;this.trackUnknownProperties&&(n=this.unknownPropertyPaths,i=this.knownPropertyPaths,this.unknownPropertyPaths={},this.knownPropertyPaths={});var a=this.validateAll(t,r.not,null,null,e),s=this.errors.slice(o);return this.errors=this.errors.slice(0,o),this.trackUnknownProperties&&(this.unknownPropertyPaths=n,this.knownPropertyPaths=i),null===a&&0===s.length?this.createError(_.NOT_PASSED,{},"","/not",null,t,r):null},u.prototype.validateHypermedia=function(t,r,e){if(!r.links)return null;for(var n,i=0;i<r.links.length;i++){var o=r.links[i];if("describedby"===o.rel){for(var a=new l(o.href),s=!0,u=0;u<a.varNames.length;u++)if(!(a.varNames[u]in t)){s=!1;break}if(s){var h={$ref:a.fillFromObject(t)};if(n=this.validateAll(t,h,[],["links",i],e))return n}}}};var g=e(11);function E(t,r){var e=r[t=t||"en"];return function(t,r,n){var i=e[t.code]||A[t.code];if("string"!=typeof i)return"Unknown error code "+t.code+": "+JSON.stringify(t.messageParams);var o=Object.assign({},t.params,{data:r,schema:n,form:n.form||{}});return i.replace(/\{([^{}]*)\}/g,function(t,r){var e=g(o,r);return"string"==typeof e||"number"==typeof e?e:t})}}var _={INVALID_TYPE:0,ENUM_MISMATCH:1,ANY_OF_MISSING:10,ONE_OF_MISSING:11,ONE_OF_MULTIPLE:12,NOT_PASSED:13,NUMBER_MULTIPLE_OF:100,NUMBER_MINIMUM:101,NUMBER_MINIMUM_EXCLUSIVE:102,NUMBER_MAXIMUM:103,NUMBER_MAXIMUM_EXCLUSIVE:104,NUMBER_NOT_A_NUMBER:105,STRING_LENGTH_SHORT:200,STRING_LENGTH_LONG:201,STRING_PATTERN:202,OBJECT_PROPERTIES_MINIMUM:300,OBJECT_PROPERTIES_MAXIMUM:301,OBJECT_REQUIRED:302,OBJECT_ADDITIONAL_PROPERTIES:303,OBJECT_DEPENDENCY_KEY:304,ARRAY_LENGTH_SHORT:400,ARRAY_LENGTH_LONG:401,ARRAY_UNIQUE:402,ARRAY_ADDITIONAL_ITEMS:403,ARRAY_LENGTH_NOT_MATCH:404,FORMAT_CUSTOM:500,KEYWORD_CUSTOM:501,CIRCULAR_REFERENCE:600,UNKNOWN_PROPERTY:1e3},O={};for(var P in _)O[_[P]]=P;var A={INVALID_TYPE:"Invalid type: {type} (expected {expected})",ENUM_MISMATCH:"No enum match for: {value}",ANY_OF_MISSING:'Data does not match any schemas from "anyOf"',ONE_OF_MISSING:'Data does not match any schemas from "oneOf"',ONE_OF_MULTIPLE:'Data is valid against more than one schema from "oneOf": indices {index1} and {index2}',NOT_PASSED:'Data matches schema from "not"',NUMBER_MULTIPLE_OF:"Value {value} is not a multiple of {multipleOf}",NUMBER_MINIMUM:"Value {value} is less than minimum {minimum}",NUMBER_MINIMUM_EXCLUSIVE:"Value {value} is equal to exclusive minimum {minimum}",NUMBER_MAXIMUM:"Value {value} is greater than maximum {maximum}",NUMBER_MAXIMUM_EXCLUSIVE:"Value {value} is equal to exclusive maximum {maximum}",NUMBER_NOT_A_NUMBER:"Value {value} is not a valid number",STRING_LENGTH_SHORT:"String is too short ({length} chars), minimum {minimum}",STRING_LENGTH_LONG:"String is too long ({length} chars), maximum {maximum}",STRING_PATTERN:"String does not match pattern: {pattern}",OBJECT_PROPERTIES_MINIMUM:"Too few properties defined ({propertyCount}), minimum {minimum}",OBJECT_PROPERTIES_MAXIMUM:"Too many properties defined ({propertyCount}), maximum {maximum}",OBJECT_REQUIRED:"Missing required property: {key}",OBJECT_ADDITIONAL_PROPERTIES:"Additional properties not allowed",OBJECT_DEPENDENCY_KEY:"Dependency failed - key must exist: {missing} (due to key: {key})",ARRAY_LENGTH_SHORT:"Array is too short ({data.length}), minimum {schema.minItems}",ARRAY_LENGTH_LONG:"Array is too long ({data.length}), maximum {schema.maxItems}",ARRAY_LENGTH_NOT_MATCH:"Array length should be {schema.minItems}, current:{data.length}",ARRAY_UNIQUE:"Array items are not unique (indices {match1} and {match2})",ARRAY_ADDITIONAL_ITEMS:"Additional items not allowed",FORMAT_CUSTOM:"Format validation failed ({message})",KEYWORD_CUSTOM:"Keyword failed: {key} ({message})",CIRCULAR_REFERENCE:"Circular $refs: {urls}",UNKNOWN_PROPERTY:"Unknown property (not in schema)"};function b(t,r,e,n,i){if(Error.call(this),void 0===t)throw new Error("No error code supplied: "+n);this.message="",this.params=r,this.code=t,this.dataPath=e||"",this.schemaPath=n||"",this.subErrors=i||null;var o=new Error(this.message);if(this.stack=o.stack||o.stacktrace,!this.stack)try{throw o}catch(o){this.stack=o.stack||o.stacktrace}}b.prototype=Object.create(Error.prototype),b.prototype.constructor=b,b.prototype.name="ValidationError",b.prototype.prefixWith=function(t,r){if(null!==t&&(t=t.replace(/~/g,"~0").replace(/\//g,"~1"),this.dataPath="/"+t+this.dataPath),null!==r&&(r=r.replace(/~/g,"~0").replace(/\//g,"~1"),this.schemaPath="/"+r+this.schemaPath),null!==this.subErrors)for(var e=0;e<this.subErrors.length;e++)this.subErrors[e].prefixWith(t,r);return this};var M=function t(r){var e,n,i={},o=new u(i),a={setErrorReporter:function(t){return"string"==typeof t?this.language(t):(n=t,!0)},addFormat:function(){o.addFormat.apply(o,arguments)},language:function(t){return t?(i[t]||(t=t.split("-")[0]),!!i[t]&&(e=t,t)):e},addLanguage:function(t,r){var e;for(e in _)r[e]&&!r[_[e]]&&(r[_[e]]=r[e]);var n=t.split("-")[0];if(i[n])for(e in i[t]=Object.create(i[n]),r)void 0===i[n][e]&&(i[n][e]=r[e]),i[t][e]=r[e];else i[t]=r,i[n]=r;return this},freshApi:function(r){var e=t();return r&&e.language(r),e},validate:function(t,r,a,s){var l=this;this.root=t;var h=E(e,i),c=new u(i,o,!1,n?function(t,r,e){return n(t,r,e)||h(t,r,e)}:h,a,s);"string"==typeof r&&(r={$ref:r}),c.addSchema("",r);var f=c.validateAll(t,r,null,null,"");return!f&&s&&(f=c.banUnknownProperties(t,r)),new Promise(function(t){var r=function(r){l.error=r,l.missing=c.missing,l.valid=null===r||void 0===r,t(l.valid)};f?r(f):c.getFormatValidationResults().then(function(t){f=t[0],r(f)})})},validateResult:function(){var t={};return this.validate.apply(t,arguments).then(function(){return t})},validateMultiple:function(t,r,a,s){var l=E(e,i),h=new u(i,o,!0,n?function(t,r,e){return n(t,r,e)||l(t,r,e)}:l,a,s);return"string"==typeof r&&(r={$ref:r}),h.addSchema("",r),h.validateAll(t,r,null,null,""),s&&h.banUnknownProperties(t,r),h.getFormatValidationResults().then(function(t){t=t.filter(function(t){return void 0!==t});var r={};return r.errors=h.errors.concat(t),r.missing=h.missing,r.valid=0===r.errors.length,r})},addSchema:function(){return o.addSchema.apply(o,arguments)},getSchema:function(){return o.getSchema.apply(o,arguments)},getSchemaMap:function(){return o.getSchemaMap.apply(o,arguments)},getSchemaUris:function(){return o.getSchemaUris.apply(o,arguments)},getMissingUris:function(){return o.getMissingUris.apply(o,arguments)},dropSchemas:function(){o.dropSchemas.apply(o,arguments)},defineKeyword:function(){o.defineKeyword.apply(o,arguments)},defineError:function(t,r,e){if("string"!=typeof t||!/^[A-Z]+(_[A-Z]+)*$/.test(t))throw new Error("Code name must be a string in UPPER_CASE_WITH_UNDERSCORES");if("number"!=typeof r||r%1!=0||r<1e4)throw new Error("Code number must be an integer > 10000");if(void 0!==_[t])throw new Error("Error already defined: "+t+" as "+_[t]);if(void 0!==O[r])throw new Error("Error code already used: "+O[r]+" as "+r);for(var n in _[t]=r,O[r]=t,A[t]=A[r]=e,i){var o=i[n];o[t]&&(o[r]=o[r]||o[t])}},reset:function(){o.reset(),this.error=null,this.missing=[],this.valid=!0},missing:[],error:null,valid:!0,normSchema:y,resolveUrl:m,getDocumentUri:v,errorCodes:_,languages:i};return a.language(r||"en"),a}();M.addLanguage("en-gb",A),M.tv4=M,t.exports=M},function(t,r,e){var n=e(12);t.exports=function(t,r,e){var i=null==t?void 0:n(t,r);return void 0===i?e:i}},function(t,r,e){var n=e(13),i=e(53);t.exports=function(t,r){for(var e=0,o=(r=n(r,t)).length;null!=t&&e<o;)t=t[i(r[e++])];return e&&e==o?t:void 0}},function(t,r,e){var n=e(3),i=e(14),o=e(20),a=e(50);t.exports=function(t,r){return n(t)?t:i(t,r)?[t]:o(a(t))}},function(t,r,e){var n=e(3),i=e(4),o=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,a=/^\w*$/;t.exports=function(t,r){if(n(t))return!1;var e=typeof t;return!("number"!=e&&"symbol"!=e&&"boolean"!=e&&null!=t&&!i(t))||a.test(t)||!o.test(t)||null!=r&&t in Object(r)}},function(t,r,e){(function(r){var e="object"==typeof r&&r&&r.Object===Object&&r;t.exports=e}).call(this,e(16))},function(t,r){var e;e=function(){return this}();try{e=e||Function("return this")()||(0,eval)("this")}catch(t){"object"==typeof window&&(e=window)}t.exports=e},function(t,r,e){var n=e(5),i=Object.prototype,o=i.hasOwnProperty,a=i.toString,s=n?n.toStringTag:void 0;t.exports=function(t){var r=o.call(t,s),e=t[s];try{t[s]=void 0;var n=!0}catch(t){}var i=a.call(t);return n&&(r?t[s]=e:delete t[s]),i}},function(t,r){var e=Object.prototype.toString;t.exports=function(t){return e.call(t)}},function(t,r){t.exports=function(t){return null!=t&&"object"==typeof t}},function(t,r,e){var n=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,i=/\\(\\)?/g,o=e(21)(function(t){var r=[];return 46===t.charCodeAt(0)&&r.push(""),t.replace(n,function(t,e,n,o){r.push(n?o.replace(i,"$1"):e||t)}),r});t.exports=o},function(t,r,e){var n=e(22),i=500;t.exports=function(t){var r=n(t,function(t){return e.size===i&&e.clear(),t}),e=r.cache;return r}},function(t,r,e){var n=e(23),i="Expected a function";function o(t,r){if("function"!=typeof t||null!=r&&"function"!=typeof r)throw new TypeError(i);var e=function(){var n=arguments,i=r?r.apply(this,n):n[0],o=e.cache;if(o.has(i))return o.get(i);var a=t.apply(this,n);return e.cache=o.set(i,a)||o,a};return e.cache=new(o.Cache||n),e}o.Cache=n,t.exports=o},function(t,r,e){var n=e(24),i=e(45),o=e(47),a=e(48),s=e(49);function l(t){var r=-1,e=null==t?0:t.length;for(this.clear();++r<e;){var n=t[r];this.set(n[0],n[1])}}l.prototype.clear=n,l.prototype.delete=i,l.prototype.get=o,l.prototype.has=a,l.prototype.set=s,t.exports=l},function(t,r,e){var n=e(25),i=e(37),o=e(44);t.exports=function(){this.size=0,this.__data__={hash:new n,map:new(o||i),string:new n}}},function(t,r,e){var n=e(26),i=e(33),o=e(34),a=e(35),s=e(36);function l(t){var r=-1,e=null==t?0:t.length;for(this.clear();++r<e;){var n=t[r];this.set(n[0],n[1])}}l.prototype.clear=n,l.prototype.delete=i,l.prototype.get=o,l.prototype.has=a,l.prototype.set=s,t.exports=l},function(t,r,e){var n=e(0);t.exports=function(){this.__data__=n?n(null):{},this.size=0}},function(t,r,e){var n=e(28),i=e(29),o=e(9),a=e(31),s=/^\[object .+?Constructor\]$/,l=Function.prototype,u=Object.prototype,h=l.toString,c=u.hasOwnProperty,f=RegExp("^"+h.call(c).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$");t.exports=function(t){return!(!o(t)||i(t))&&(n(t)?f:s).test(a(t))}},function(t,r,e){var n=e(7),i=e(9),o="[object AsyncFunction]",a="[object Function]",s="[object GeneratorFunction]",l="[object Proxy]";t.exports=function(t){if(!i(t))return!1;var r=n(t);return r==a||r==s||r==o||r==l}},function(t,r,e){var n=e(30),i=function(){var t=/[^.]+$/.exec(n&&n.keys&&n.keys.IE_PROTO||"");return t?"Symbol(src)_1."+t:""}();t.exports=function(t){return!!i&&i in t}},function(t,r,e){var n=e(6)["__core-js_shared__"];t.exports=n},function(t,r){var e=Function.prototype.toString;t.exports=function(t){if(null!=t){try{return e.call(t)}catch(t){}try{return t+""}catch(t){}}return""}},function(t,r){t.exports=function(t,r){return null==t?void 0:t[r]}},function(t,r){t.exports=function(t){var r=this.has(t)&&delete this.__data__[t];return this.size-=r?1:0,r}},function(t,r,e){var n=e(0),i="__lodash_hash_undefined__",o=Object.prototype.hasOwnProperty;t.exports=function(t){var r=this.__data__;if(n){var e=r[t];return e===i?void 0:e}return o.call(r,t)?r[t]:void 0}},function(t,r,e){var n=e(0),i=Object.prototype.hasOwnProperty;t.exports=function(t){var r=this.__data__;return n?void 0!==r[t]:i.call(r,t)}},function(t,r,e){var n=e(0),i="__lodash_hash_undefined__";t.exports=function(t,r){var e=this.__data__;return this.size+=this.has(t)?0:1,e[t]=n&&void 0===r?i:r,this}},function(t,r,e){var n=e(38),i=e(39),o=e(41),a=e(42),s=e(43);function l(t){var r=-1,e=null==t?0:t.length;for(this.clear();++r<e;){var n=t[r];this.set(n[0],n[1])}}l.prototype.clear=n,l.prototype.delete=i,l.prototype.get=o,l.prototype.has=a,l.prototype.set=s,t.exports=l},function(t,r){t.exports=function(){this.__data__=[],this.size=0}},function(t,r,e){var n=e(1),i=Array.prototype.splice;t.exports=function(t){var r=this.__data__,e=n(r,t);return!(e<0||(e==r.length-1?r.pop():i.call(r,e,1),--this.size,0))}},function(t,r){t.exports=function(t,r){return t===r||t!=t&&r!=r}},function(t,r,e){var n=e(1);t.exports=function(t){var r=this.__data__,e=n(r,t);return e<0?void 0:r[e][1]}},function(t,r,e){var n=e(1);t.exports=function(t){return n(this.__data__,t)>-1}},function(t,r,e){var n=e(1);t.exports=function(t,r){var e=this.__data__,i=n(e,t);return i<0?(++this.size,e.push([t,r])):e[i][1]=r,this}},function(t,r,e){var n=e(8)(e(6),"Map");t.exports=n},function(t,r,e){var n=e(2);t.exports=function(t){var r=n(this,t).delete(t);return this.size-=r?1:0,r}},function(t,r){t.exports=function(t){var r=typeof t;return"string"==r||"number"==r||"symbol"==r||"boolean"==r?"__proto__"!==t:null===t}},function(t,r,e){var n=e(2);t.exports=function(t){return n(this,t).get(t)}},function(t,r,e){var n=e(2);t.exports=function(t){return n(this,t).has(t)}},function(t,r,e){var n=e(2);t.exports=function(t,r){var e=n(this,t),i=e.size;return e.set(t,r),this.size+=e.size==i?0:1,this}},function(t,r,e){var n=e(51);t.exports=function(t){return null==t?"":n(t)}},function(t,r,e){var n=e(5),i=e(52),o=e(3),a=e(4),s=1/0,l=n?n.prototype:void 0,u=l?l.toString:void 0;t.exports=function t(r){if("string"==typeof r)return r;if(o(r))return i(r,t)+"";if(a(r))return u?u.call(r):"";var e=r+"";return"0"==e&&1/r==-s?"-0":e}},function(t,r){t.exports=function(t,r){for(var e=-1,n=null==t?0:t.length,i=Array(n);++e<n;)i[e]=r(t[e],e,t);return i}},function(t,r,e){var n=e(4),i=1/0;t.exports=function(t){if("string"==typeof t||n(t))return t;var r=t+"";return"0"==r&&1/t==-i?"-0":r}}])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__(8);
+
+/* Built-in method references that are verified to be native. */
+var nativeCreate = getNative(Object, 'create');
+
+module.exports = nativeCreate;
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var eq = __webpack_require__(40);
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+module.exports = assocIndexOf;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isKeyable = __webpack_require__(46);
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+module.exports = getMapData;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(7),
+    isObjectLike = __webpack_require__(19);
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && baseGetTag(value) == symbolTag);
+}
+
+module.exports = isSymbol;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(6);
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+module.exports = Symbol;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var freeGlobal = __webpack_require__(15);
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(5),
+    getRawTag = __webpack_require__(17),
+    objectToString = __webpack_require__(18);
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+module.exports = baseGetTag;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsNative = __webpack_require__(27),
+    getValue = __webpack_require__(32);
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+module.exports = getNative;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+module.exports = isObject;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/*
+Author: Geraint Luff and others
+Year: 2013
+
+This code is released into the "public domain" by its author(s).  Anybody may use, alter and distribute the code without restriction.  The author makes no guarantees, and takes no liability of any kind for use of this code.
+
+If you find a bug or make an improvement, it would be courteous to let the author know, but it is not compulsory.
+*/
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FObject%2Fkeys
+if (!Object.keys) {
+  Object.keys = function () {
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+        hasDontEnumBug = !{
+      toString: null
+    }.propertyIsEnumerable('toString'),
+        dontEnums = ['toString', 'toLocaleString', 'valueOf', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable', 'constructor'],
+        dontEnumsLength = dontEnums.length;
+    return function (obj) {
+      if (_typeof(obj) !== 'object' && typeof obj !== 'function' || obj === null) {
+        throw new TypeError('Object.keys called on non-object');
+      }
+
+      var result = [];
+
+      for (var prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) {
+          result.push(prop);
+        }
+      }
+
+      if (hasDontEnumBug) {
+        for (var i = 0; i < dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) {
+            result.push(dontEnums[i]);
+          }
+        }
+      }
+
+      return result;
+    };
+  }();
+} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+
+
+if (!Object.create) {
+  Object.create = function () {
+    function F() {}
+
+    return function (o) {
+      if (arguments.length !== 1) {
+        throw new Error('Object.create implementation only accepts one parameter.');
+      }
+
+      F.prototype = o;
+      return new F();
+    };
+  }();
+} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FArray%2FisArray
+
+
+if (!Array.isArray) {
+  Array.isArray = function (vArg) {
+    return Object.prototype.toString.call(vArg) === "[object Array]";
+  };
+} // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf?redirectlocale=en-US&redirectslug=JavaScript%2FReference%2FGlobal_Objects%2FArray%2FindexOf
+
+
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (searchElement
+  /*, fromIndex */
+  ) {
+    if (this === null) {
+      throw new TypeError();
+    }
+
+    var t = Object(this);
+    var len = t.length >>> 0;
+
+    if (len === 0) {
+      return -1;
+    }
+
+    var n = 0;
+
+    if (arguments.length > 1) {
+      n = Number(arguments[1]);
+
+      if (n !== n) {
+        // shortcut for verifying if it's NaN
+        n = 0;
+      } else if (n !== 0 && n !== Infinity && n !== -Infinity) {
+        n = (n > 0 || -1) * Math.floor(Math.abs(n));
+      }
+    }
+
+    if (n >= len) {
+      return -1;
+    }
+
+    var k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
+
+    for (; k < len; k++) {
+      if (k in t && t[k] === searchElement) {
+        return k;
+      }
+    }
+
+    return -1;
+  };
+} // Grungey Object.isFrozen hack
+
+
+if (!Object.isFrozen) {
+  Object.isFrozen = function (obj) {
+    var key = "tv4_test_frozen_key";
+
+    while (obj.hasOwnProperty(key)) {
+      key += Math.random();
+    }
+
+    try {
+      obj[key] = true;
+      delete obj[key];
+      return false;
+    } catch (e) {
+      return true;
+    }
+  };
+} // Based on: https://github.com/geraintluff/uri-templates, but with all the de-substitution stuff removed
+
+
+var uriTemplateGlobalModifiers = {
+  "+": true,
+  "#": true,
+  ".": true,
+  "/": true,
+  ";": true,
+  "?": true,
+  "&": true
+};
+var uriTemplateSuffices = {
+  "*": true
+};
+
+function notReallyPercentEncode(string) {
+  return encodeURI(string).replace(/%25[0-9][0-9]/g, function (doubleEncoded) {
+    return "%" + doubleEncoded.substring(3);
+  });
+}
+
+function uriTemplateSubstitution(spec) {
+  var modifier = "";
+
+  if (uriTemplateGlobalModifiers[spec.charAt(0)]) {
+    modifier = spec.charAt(0);
+    spec = spec.substring(1);
+  }
+
+  var separator = "";
+  var prefix = "";
+  var shouldEscape = true;
+  var showVariables = false;
+  var trimEmptyString = false;
+
+  if (modifier === '+') {
+    shouldEscape = false;
+  } else if (modifier === ".") {
+    prefix = ".";
+    separator = ".";
+  } else if (modifier === "/") {
+    prefix = "/";
+    separator = "/";
+  } else if (modifier === '#') {
+    prefix = "#";
+    shouldEscape = false;
+  } else if (modifier === ';') {
+    prefix = ";";
+    separator = ";";
+    showVariables = true;
+    trimEmptyString = true;
+  } else if (modifier === '?') {
+    prefix = "?";
+    separator = "&";
+    showVariables = true;
+  } else if (modifier === '&') {
+    prefix = "&";
+    separator = "&";
+    showVariables = true;
+  }
+
+  var varNames = [];
+  var varList = spec.split(",");
+  var varSpecs = [];
+  var varSpecMap = {};
+
+  for (var i = 0; i < varList.length; i++) {
+    var varName = varList[i];
+    var truncate = null;
+
+    if (varName.indexOf(":") !== -1) {
+      var parts = varName.split(":");
+      varName = parts[0];
+      truncate = parseInt(parts[1], 10);
+    }
+
+    var suffices = {};
+
+    while (uriTemplateSuffices[varName.charAt(varName.length - 1)]) {
+      suffices[varName.charAt(varName.length - 1)] = true;
+      varName = varName.substring(0, varName.length - 1);
+    }
+
+    var varSpec = {
+      truncate: truncate,
+      name: varName,
+      suffices: suffices
+    };
+    varSpecs.push(varSpec);
+    varSpecMap[varName] = varSpec;
+    varNames.push(varName);
+  }
+
+  var subFunction = function subFunction(valueFunction) {
+    var result = "";
+    var startIndex = 0;
+
+    for (var i = 0; i < varSpecs.length; i++) {
+      var varSpec = varSpecs[i];
+      var value = valueFunction(varSpec.name);
+
+      if (value === null || value === undefined || Array.isArray(value) && value.length === 0 || _typeof(value) === 'object' && Object.keys(value).length === 0) {
+        startIndex++;
+        continue;
+      }
+
+      if (i === startIndex) {
+        result += prefix;
+      } else {
+        result += separator || ",";
+      }
+
+      if (Array.isArray(value)) {
+        if (showVariables) {
+          result += varSpec.name + "=";
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          if (j > 0) {
+            result += varSpec.suffices['*'] ? separator || "," : ",";
+
+            if (varSpec.suffices['*'] && showVariables) {
+              result += varSpec.name + "=";
+            }
+          }
+
+          result += shouldEscape ? encodeURIComponent(value[j]).replace(/!/g, "%21") : notReallyPercentEncode(value[j]);
+        }
+      } else if (_typeof(value) === "object") {
+        if (showVariables && !varSpec.suffices['*']) {
+          result += varSpec.name + "=";
+        }
+
+        var first = true;
+
+        for (var key in value) {
+          if (!first) {
+            result += varSpec.suffices['*'] ? separator || "," : ",";
+          }
+
+          first = false;
+          result += shouldEscape ? encodeURIComponent(key).replace(/!/g, "%21") : notReallyPercentEncode(key);
+          result += varSpec.suffices['*'] ? '=' : ",";
+          result += shouldEscape ? encodeURIComponent(value[key]).replace(/!/g, "%21") : notReallyPercentEncode(value[key]);
+        }
+      } else {
+        if (showVariables) {
+          result += varSpec.name;
+
+          if (!trimEmptyString || value !== "") {
+            result += "=";
+          }
+        }
+
+        if (varSpec.truncate != null) {
+          value = value.substring(0, varSpec.truncate);
+        }
+
+        result += shouldEscape ? encodeURIComponent(value).replace(/!/g, "%21") : notReallyPercentEncode(value);
+      }
+    }
+
+    return result;
+  };
+
+  subFunction.varNames = varNames;
+  return {
+    prefix: prefix,
+    substitution: subFunction
+  };
+}
+
+function UriTemplate(template) {
+  if (!(this instanceof UriTemplate)) {
+    return new UriTemplate(template);
+  }
+
+  var parts = template.split("{");
+  var textParts = [parts.shift()];
+  var prefixes = [];
+  var substitutions = [];
+  var varNames = [];
+
+  while (parts.length > 0) {
+    var part = parts.shift();
+    var spec = part.split("}")[0];
+    var remainder = part.substring(spec.length + 1);
+    var funcs = uriTemplateSubstitution(spec);
+    substitutions.push(funcs.substitution);
+    prefixes.push(funcs.prefix);
+    textParts.push(remainder);
+    varNames = varNames.concat(funcs.substitution.varNames);
+  }
+
+  this.fill = function (valueFunction) {
+    var result = textParts[0];
+
+    for (var i = 0; i < substitutions.length; i++) {
+      var substitution = substitutions[i];
+      result += substitution(valueFunction);
+      result += textParts[i + 1];
+    }
+
+    return result;
+  };
+
+  this.varNames = varNames;
+  this.template = template;
+}
+
+UriTemplate.prototype = {
+  toString: function toString() {
+    return this.template;
+  },
+  fillFromObject: function fillFromObject(obj) {
+    return this.fill(function (varName) {
+      return obj[varName];
+    });
+  }
+};
+
+var ValidatorContext = function ValidatorContext(languages, parent, collectMultiple, errorReporter, checkRecursive, trackUnknownProperties) {
+  this.missing = [];
+  this.currentFormatValidation = null;
+  this.formatValidationQueue = [];
+  this.missingMap = {};
+  this.formatValidators = parent ? Object.create(parent.formatValidators) : {};
+  this.schemas = parent ? Object.create(parent.schemas) : {};
+  this.collectMultiple = collectMultiple;
+  this.errors = [];
+  this.handleError = collectMultiple ? this.collectError : this.returnError;
+
+  if (checkRecursive) {
+    this.checkRecursive = true;
+    this.scanned = [];
+    this.scannedFrozen = [];
+    this.scannedFrozenSchemas = [];
+    this.scannedFrozenValidationErrors = [];
+    this.validatedSchemasKey = 'tv4_validation_id';
+    this.validationErrorsKey = 'tv4_validation_errors_id';
+  }
+
+  if (trackUnknownProperties) {
+    this.trackUnknownProperties = true;
+    this.knownPropertyPaths = {};
+    this.unknownPropertyPaths = {};
+  }
+
+  this.errorReporter = errorReporter || defaultErrorReporter('en', languages);
+
+  if (typeof this.errorReporter === 'string') {
+    throw new Error('debug');
+  }
+
+  this.definedKeywords = {};
+
+  if (parent) {
+    for (var key in parent.definedKeywords) {
+      this.definedKeywords[key] = parent.definedKeywords[key].slice(0);
+    }
+  }
+};
+
+ValidatorContext.prototype.getFormatValidationResults = function () {
+  var ret = Promise.all(this.formatValidationQueue);
+  this.formatValidationQueue.length = 0;
+  return ret;
+};
+
+ValidatorContext.prototype.defineKeyword = function (keyword, keywordFunction) {
+  this.definedKeywords[keyword] = this.definedKeywords[keyword] || [];
+  this.definedKeywords[keyword].push(keywordFunction);
+};
+
+ValidatorContext.prototype.createError = function (code, messageParams, dataPath, schemaPath, subErrors, data, schema) {
+  var error = new ValidationError(code, messageParams, dataPath, schemaPath, subErrors);
+  error.message = this.errorReporter(error, data, schema);
+  return error;
+};
+
+ValidatorContext.prototype.returnError = function (error) {
+  return error;
+};
+
+ValidatorContext.prototype.collectError = function (error) {
+  if (error) {
+    this.errors.push(error);
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.prefixErrors = function (startIndex, dataPath, schemaPath) {
+  for (var i = startIndex; i < this.errors.length; i++) {
+    this.errors[i] = this.errors[i].prefixWith(dataPath, schemaPath);
+  }
+
+  return this;
+};
+
+ValidatorContext.prototype.banUnknownProperties = function (data, schema) {
+  for (var unknownPath in this.unknownPropertyPaths) {
+    var error = this.createError(ErrorCodes.UNKNOWN_PROPERTY, {
+      path: unknownPath
+    }, unknownPath, "", null, data, schema);
+    var result = this.handleError(error);
+
+    if (result) {
+      return result;
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.addFormat = function (format, validator) {
+  if (typeof validator === 'function') {
+    validator = {
+      validator: validator
+    };
+  }
+
+  if (_typeof(format) === 'object') {
+    for (var key in format) {
+      this.addFormat(key, format[key]);
+    }
+
+    return this;
+  }
+
+  this.formatValidators[format] = validator;
+};
+
+ValidatorContext.prototype.resolveRefs = function (schema, urlHistory) {
+  if (schema['$ref'] !== undefined) {
+    urlHistory = urlHistory || {};
+
+    if (urlHistory[schema['$ref']]) {
+      return this.createError(ErrorCodes.CIRCULAR_REFERENCE, {
+        urls: Object.keys(urlHistory).join(', ')
+      }, '', '', null, undefined, schema);
+    }
+
+    urlHistory[schema['$ref']] = true;
+    schema = this.getSchema(schema['$ref'], urlHistory);
+  }
+
+  return schema;
+};
+
+ValidatorContext.prototype.getSchema = function (url, urlHistory) {
+  var schema;
+
+  if (this.schemas[url] !== undefined) {
+    schema = this.schemas[url];
+    return this.resolveRefs(schema, urlHistory);
+  }
+
+  var baseUrl = url;
+  var fragment = "";
+
+  if (url.indexOf('#') !== -1) {
+    fragment = url.substring(url.indexOf("#") + 1);
+    baseUrl = url.substring(0, url.indexOf("#"));
+  }
+
+  if (_typeof(this.schemas[baseUrl]) === 'object') {
+    schema = this.schemas[baseUrl];
+    var pointerPath = decodeURIComponent(fragment);
+
+    if (pointerPath === "") {
+      return this.resolveRefs(schema, urlHistory);
+    } else if (pointerPath.charAt(0) !== "/") {
+      return undefined;
+    }
+
+    var parts = pointerPath.split("/").slice(1);
+
+    for (var i = 0; i < parts.length; i++) {
+      var component = parts[i].replace(/~1/g, "/").replace(/~0/g, "~");
+
+      if (schema[component] === undefined) {
+        schema = undefined;
+        break;
+      }
+
+      schema = schema[component];
+    }
+
+    if (schema !== undefined) {
+      return this.resolveRefs(schema, urlHistory);
+    }
+  }
+
+  if (this.missing[baseUrl] === undefined) {
+    this.missing.push(baseUrl);
+    this.missing[baseUrl] = baseUrl;
+    this.missingMap[baseUrl] = baseUrl;
+  }
+};
+
+ValidatorContext.prototype.searchSchemas = function (schema, url) {
+  if (Array.isArray(schema)) {
+    for (var i = 0; i < schema.length; i++) {
+      this.searchSchemas(schema[i], url);
+    }
+  } else if (schema && _typeof(schema) === "object") {
+    if (typeof schema.id === "string") {
+      if (isTrustedUrl(url, schema.id)) {
+        if (this.schemas[schema.id] === undefined) {
+          this.schemas[schema.id] = schema;
+        }
+      }
+    }
+
+    for (var key in schema) {
+      if (key !== "enum") {
+        if (_typeof(schema[key]) === "object") {
+          this.searchSchemas(schema[key], url);
+        } else if (key === "$ref") {
+          var uri = getDocumentUri(schema[key]);
+
+          if (uri && this.schemas[uri] === undefined && this.missingMap[uri] === undefined) {
+            this.missingMap[uri] = uri;
+          }
+        }
+      }
+    }
+  }
+};
+
+ValidatorContext.prototype.addSchema = function (url, schema) {
+  //overload
+  if (typeof url !== 'string' || typeof schema === 'undefined') {
+    if (_typeof(url) === 'object' && typeof url.id === 'string') {
+      schema = url;
+      url = schema.id;
+    } else {
+      return;
+    }
+  }
+
+  if (url === getDocumentUri(url) + "#") {
+    // Remove empty fragment
+    url = getDocumentUri(url);
+  }
+
+  this.schemas[url] = schema;
+  delete this.missingMap[url];
+  normSchema(schema, url);
+  this.searchSchemas(schema, url);
+};
+
+ValidatorContext.prototype.getSchemaMap = function () {
+  var map = {};
+
+  for (var key in this.schemas) {
+    map[key] = this.schemas[key];
+  }
+
+  return map;
+};
+
+ValidatorContext.prototype.getSchemaUris = function (filterRegExp) {
+  var list = [];
+
+  for (var key in this.schemas) {
+    if (!filterRegExp || filterRegExp.test(key)) {
+      list.push(key);
+    }
+  }
+
+  return list;
+};
+
+ValidatorContext.prototype.getMissingUris = function (filterRegExp) {
+  var list = [];
+
+  for (var key in this.missingMap) {
+    if (!filterRegExp || filterRegExp.test(key)) {
+      list.push(key);
+    }
+  }
+
+  return list;
+};
+
+ValidatorContext.prototype.dropSchemas = function () {
+  this.schemas = {};
+  this.reset();
+};
+
+ValidatorContext.prototype.reset = function () {
+  this.missing = [];
+  this.missingMap = {};
+  this.errors = [];
+};
+
+ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, schemaPathParts, dataPointerPath) {
+  var _this = this;
+
+  var topLevel;
+  schema = this.resolveRefs(schema);
+
+  if (!schema) {
+    return null;
+  } else if (schema instanceof ValidationError) {
+    this.errors.push(schema);
+    return schema;
+  }
+
+  var startErrorCount = this.errors.length;
+  var frozenIndex,
+      scannedFrozenSchemaIndex = null,
+      scannedSchemasIndex = null;
+
+  if (this.checkRecursive && data && _typeof(data) === 'object') {
+    topLevel = !this.scanned.length;
+
+    if (data[this.validatedSchemasKey]) {
+      var schemaIndex = data[this.validatedSchemasKey].indexOf(schema);
+
+      if (schemaIndex !== -1) {
+        this.errors = this.errors.concat(data[this.validationErrorsKey][schemaIndex]);
+        return null;
+      }
+    }
+
+    if (Object.isFrozen(data)) {
+      frozenIndex = this.scannedFrozen.indexOf(data);
+
+      if (frozenIndex !== -1) {
+        var frozenSchemaIndex = this.scannedFrozenSchemas[frozenIndex].indexOf(schema);
+
+        if (frozenSchemaIndex !== -1) {
+          this.errors = this.errors.concat(this.scannedFrozenValidationErrors[frozenIndex][frozenSchemaIndex]);
+          return null;
+        }
+      }
+    }
+
+    this.scanned.push(data);
+
+    if (Object.isFrozen(data)) {
+      if (frozenIndex === -1) {
+        frozenIndex = this.scannedFrozen.length;
+        this.scannedFrozen.push(data);
+        this.scannedFrozenSchemas.push([]);
+      }
+
+      scannedFrozenSchemaIndex = this.scannedFrozenSchemas[frozenIndex].length;
+      this.scannedFrozenSchemas[frozenIndex][scannedFrozenSchemaIndex] = schema;
+      this.scannedFrozenValidationErrors[frozenIndex][scannedFrozenSchemaIndex] = [];
+    } else {
+      if (!data[this.validatedSchemasKey]) {
+        try {
+          Object.defineProperty(data, this.validatedSchemasKey, {
+            value: [],
+            configurable: true
+          });
+          Object.defineProperty(data, this.validationErrorsKey, {
+            value: [],
+            configurable: true
+          });
+        } catch (e) {
+          //IE 7/8 workaround
+          data[this.validatedSchemasKey] = [];
+          data[this.validationErrorsKey] = [];
+        }
+      }
+
+      scannedSchemasIndex = data[this.validatedSchemasKey].length;
+      data[this.validatedSchemasKey][scannedSchemasIndex] = schema;
+      data[this.validationErrorsKey][scannedSchemasIndex] = [];
+    }
+  }
+
+  var errorCount = this.errors.length;
+  var error = this.validateBasic(data, schema, dataPointerPath) || this.validateNumeric(data, schema, dataPointerPath) || this.validateString(data, schema, dataPointerPath) || this.validateArray(data, schema, dataPointerPath) || this.validateObject(data, schema, dataPointerPath) || this.validateCombinations(data, schema, dataPointerPath) || this.validateHypermedia(data, schema, dataPointerPath) || this.validateFormat(data, schema, dataPointerPath) || this.validateDefinedKeywords(data, schema, dataPointerPath) || null;
+
+  if (topLevel) {
+    while (this.scanned.length) {
+      var item = this.scanned.pop();
+      delete item[this.validatedSchemasKey];
+    }
+
+    this.scannedFrozen = [];
+    this.scannedFrozenSchemas = [];
+  }
+
+  if (this.currentFormatValidation) {
+    var dataPathPartsThis = dataPathParts && dataPathParts.slice() || [];
+    var schemaPathPartsThis = schemaPathParts && schemaPathParts.slice() || [];
+    this.formatValidationQueue.push(this.currentFormatValidation.then(function (error) {
+      if (!error) {
+        return;
+      }
+
+      var dataPathParts = dataPathPartsThis;
+      var schemaPathParts = schemaPathPartsThis;
+
+      while (dataPathParts && dataPathParts.length || schemaPathParts && schemaPathParts.length) {
+        var dataPart = dataPathParts && dataPathParts.length ? "" + dataPathParts.pop() : null;
+        var schemaPart = schemaPathParts && schemaPathParts.length ? "" + schemaPathParts.pop() : null;
+
+        if (error) {
+          error = error.prefixWith(dataPart, schemaPart);
+        }
+
+        _this.prefixErrors(errorCount, dataPart, schemaPart);
+      }
+
+      return error;
+    }));
+    this.currentFormatValidation = null;
+  }
+
+  if (error || errorCount !== this.errors.length) {
+    while (dataPathParts && dataPathParts.length || schemaPathParts && schemaPathParts.length) {
+      var dataPart = dataPathParts && dataPathParts.length ? "" + dataPathParts.pop() : null;
+      var schemaPart = schemaPathParts && schemaPathParts.length ? "" + schemaPathParts.pop() : null;
+
+      if (error) {
+        error = error.prefixWith(dataPart, schemaPart);
+      }
+
+      this.prefixErrors(errorCount, dataPart, schemaPart);
+    }
+  }
+
+  if (scannedFrozenSchemaIndex !== null) {
+    this.scannedFrozenValidationErrors[frozenIndex][scannedFrozenSchemaIndex] = this.errors.slice(startErrorCount);
+  } else if (scannedSchemasIndex !== null) {
+    data[this.validationErrorsKey][scannedSchemasIndex] = this.errors.slice(startErrorCount);
+  }
+
+  return this.handleError(error);
+};
+
+var asyncValidateFormatCache = {};
+
+ValidatorContext.prototype.validateFormat = function (data, schema) {
+  var _this2 = this;
+
+  if (typeof schema.format !== 'string') {
+    return null;
+  }
+
+  var formatValidator = this.formatValidators[schema.format];
+
+  if (!formatValidator) {
+    return null;
+  }
+
+  this.currentFormatValidation = new Promise(function (resolve) {
+    var handleErrorMessage = function handleErrorMessage(errorMessage) {
+      if (typeof errorMessage === 'string' || typeof errorMessage === 'number') {
+        resolve(_this2.createError(ErrorCodes.FORMAT_CUSTOM, {
+          message: errorMessage
+        }, '', '/format', null, data, schema));
+      } else if (errorMessage && _typeof(errorMessage) === 'object') {
+        resolve(_this2.createError(ErrorCodes.FORMAT_CUSTOM, {
+          message: errorMessage.message || "?"
+        }, errorMessage.dataPath || '', errorMessage.schemaPath || "/format", null, data, schema));
+      } else {
+        resolve(null);
+      }
+    };
+
+    var cache = false;
+    cache = formatValidator.cache;
+    formatValidator = formatValidator.validator;
+
+    function getErrorMessage(cb) {
+      var errorMessage = formatValidator.call(null, data, schema);
+
+      if (errorMessage && errorMessage.then) {
+        errorMessage.then(function (errorMessage) {
+          cb(errorMessage);
+        });
+      } else {
+        cb(errorMessage);
+      }
+    }
+
+    if (cache) {
+      var cacheKey = "".concat(JSON.stringify(data), "$").concat(JSON.stringify(schema));
+
+      if (asyncValidateFormatCache[cacheKey] === undefined) {
+        getErrorMessage(function (errorMessage) {
+          asyncValidateFormatCache[cacheKey] = errorMessage;
+          handleErrorMessage(errorMessage);
+        });
+      } else {
+        handleErrorMessage(asyncValidateFormatCache[cacheKey]);
+      }
+    } else {
+      getErrorMessage(function (errorMessage) {
+        handleErrorMessage(errorMessage);
+      });
+    }
+  });
+  return null;
+};
+
+ValidatorContext.prototype.validateDefinedKeywords = function (data, schema, dataPointerPath) {
+  for (var key in this.definedKeywords) {
+    if (typeof schema[key] === 'undefined') {
+      continue;
+    }
+
+    var validationFunctions = this.definedKeywords[key];
+
+    for (var i = 0; i < validationFunctions.length; i++) {
+      var func = validationFunctions[i];
+      var result = func(data, schema[key], schema, dataPointerPath);
+
+      if (typeof result === 'string' || typeof result === 'number') {
+        return this.createError(ErrorCodes.KEYWORD_CUSTOM, {
+          key: key,
+          message: result
+        }, '', '', null, data, schema).prefixWith(null, key);
+      } else if (result && _typeof(result) === 'object') {
+        var code = result.code;
+
+        if (typeof code === 'string') {
+          if (!ErrorCodes[code]) {
+            throw new Error('Undefined error code (use defineError): ' + code);
+          }
+
+          code = ErrorCodes[code];
+        } else if (typeof code !== 'number') {
+          code = ErrorCodes.KEYWORD_CUSTOM;
+        }
+
+        var messageParams = _typeof(result.message) === 'object' ? result.message : {
+          key: key,
+          message: result.message || "?"
+        };
+        var schemaPath = result.schemaPath || "/" + key.replace(/~/g, '~0').replace(/\//g, '~1');
+        return this.createError(code, messageParams, result.dataPath || null, schemaPath, null, data, schema);
+      }
+    }
+  }
+
+  return null;
+};
+
+function recursiveCompare(A, B) {
+  if (A === B) {
+    return true;
+  }
+
+  if (A && B && _typeof(A) === "object" && _typeof(B) === "object") {
+    if (Array.isArray(A) !== Array.isArray(B)) {
+      return false;
+    } else if (Array.isArray(A)) {
+      if (A.length !== B.length) {
+        return false;
+      }
+
+      for (var i = 0; i < A.length; i++) {
+        if (!recursiveCompare(A[i], B[i])) {
+          return false;
+        }
+      }
+    } else {
+      var key;
+
+      for (key in A) {
+        if (B[key] === undefined && A[key] !== undefined) {
+          return false;
+        }
+      }
+
+      for (key in B) {
+        if (A[key] === undefined && B[key] !== undefined) {
+          return false;
+        }
+      }
+
+      for (key in A) {
+        if (!recursiveCompare(A[key], B[key])) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
+ValidatorContext.prototype.validateBasic = function validateBasic(data, schema, dataPointerPath) {
+  var error;
+
+  if (error = this.validateType(data, schema, dataPointerPath)) {
+    return error.prefixWith(null, "type");
+  }
+
+  if (error = this.validateEnum(data, schema, dataPointerPath)) {
+    return error.prefixWith(null, "type");
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateType = function validateType(data, schema) {
+  if (schema.type === undefined) {
+    return null;
+  }
+
+  var dataType = _typeof(data);
+
+  if (data === null) {
+    dataType = "null";
+  } else if (Array.isArray(data)) {
+    dataType = "array";
+  }
+
+  var allowedTypes = schema.type;
+
+  if (!Array.isArray(allowedTypes)) {
+    allowedTypes = [allowedTypes];
+  }
+
+  for (var i = 0; i < allowedTypes.length; i++) {
+    var type = allowedTypes[i];
+
+    if (type === dataType || type === "integer" && dataType === "number" && data % 1 === 0) {
+      return null;
+    }
+  }
+
+  return this.createError(ErrorCodes.INVALID_TYPE, {
+    type: dataType,
+    expected: allowedTypes.join("/")
+  }, '', '', null, data, schema);
+};
+
+ValidatorContext.prototype.validateEnum = function validateEnum(data, schema) {
+  if (schema["enum"] === undefined) {
+    return null;
+  }
+
+  for (var i = 0; i < schema["enum"].length; i++) {
+    var enumVal = schema["enum"][i];
+
+    if (recursiveCompare(data, enumVal)) {
+      return null;
+    }
+  }
+
+  return this.createError(ErrorCodes.ENUM_MISMATCH, {
+    value: typeof JSON !== 'undefined' ? JSON.stringify(data) : data
+  }, '', '', null, data, schema);
+};
+
+ValidatorContext.prototype.validateNumeric = function validateNumeric(data, schema, dataPointerPath) {
+  return this.validateMultipleOf(data, schema, dataPointerPath) || this.validateMinMax(data, schema, dataPointerPath) || this.validateNaN(data, schema, dataPointerPath) || null;
+};
+
+var CLOSE_ENOUGH_LOW = Math.pow(2, -51);
+var CLOSE_ENOUGH_HIGH = 1 - CLOSE_ENOUGH_LOW;
+
+ValidatorContext.prototype.validateMultipleOf = function validateMultipleOf(data, schema) {
+  var multipleOf = schema.multipleOf || schema.divisibleBy;
+
+  if (multipleOf === undefined) {
+    return null;
+  }
+
+  if (typeof data === "number") {
+    var remainder = data / multipleOf % 1;
+
+    if (remainder >= CLOSE_ENOUGH_LOW && remainder < CLOSE_ENOUGH_HIGH) {
+      return this.createError(ErrorCodes.NUMBER_MULTIPLE_OF, {
+        value: data,
+        multipleOf: multipleOf
+      }, '', '', null, data, schema);
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateMinMax = function validateMinMax(data, schema) {
+  if (typeof data !== "number") {
+    return null;
+  }
+
+  if (schema.minimum !== undefined) {
+    if (data < schema.minimum) {
+      return this.createError(ErrorCodes.NUMBER_MINIMUM, {
+        value: data,
+        minimum: schema.minimum
+      }, '', '/minimum', null, data, schema);
+    }
+
+    if (schema.exclusiveMinimum && data === schema.minimum) {
+      return this.createError(ErrorCodes.NUMBER_MINIMUM_EXCLUSIVE, {
+        value: data,
+        minimum: schema.minimum
+      }, '', '/exclusiveMinimum', null, data, schema);
+    }
+  }
+
+  if (schema.maximum !== undefined) {
+    if (data > schema.maximum) {
+      return this.createError(ErrorCodes.NUMBER_MAXIMUM, {
+        value: data,
+        maximum: schema.maximum
+      }, '', '/maximum', null, data, schema);
+    }
+
+    if (schema.exclusiveMaximum && data === schema.maximum) {
+      return this.createError(ErrorCodes.NUMBER_MAXIMUM_EXCLUSIVE, {
+        value: data,
+        maximum: schema.maximum
+      }, '', '/exclusiveMaximum', null, data, schema);
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateNaN = function validateNaN(data, schema) {
+  if (typeof data !== "number") {
+    return null;
+  }
+
+  if (isNaN(data) === true || data === Infinity || data === -Infinity) {
+    return this.createError(ErrorCodes.NUMBER_NOT_A_NUMBER, {
+      value: data
+    }, '', '/type', null, data, schema);
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateString = function validateString(data, schema, dataPointerPath) {
+  return this.validateStringLength(data, schema, dataPointerPath) || this.validateStringPattern(data, schema, dataPointerPath) || null;
+};
+
+ValidatorContext.prototype.validateStringLength = function validateStringLength(data, schema) {
+  if (typeof data !== "string") {
+    return null;
+  }
+
+  if (schema.minLength !== undefined) {
+    if (data.length < schema.minLength) {
+      return this.createError(ErrorCodes.STRING_LENGTH_SHORT, {
+        length: data.length,
+        minimum: schema.minLength
+      }, '', '/minLength', null, data, schema);
+    }
+  }
+
+  if (schema.maxLength !== undefined) {
+    if (data.length > schema.maxLength) {
+      return this.createError(ErrorCodes.STRING_LENGTH_LONG, {
+        length: data.length,
+        maximum: schema.maxLength
+      }, '', '/maxLength', null, data, schema);
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateStringPattern = function validateStringPattern(data, schema) {
+  if (typeof data !== "string" || typeof schema.pattern !== "string" && !(schema.pattern instanceof RegExp)) {
+    return null;
+  }
+
+  var regexp;
+
+  if (schema.pattern instanceof RegExp) {
+    regexp = schema.pattern;
+  } else {
+    var body,
+        flags = ''; // Check for regular expression literals
+    // @see http://www.ecma-international.org/ecma-262/5.1/#sec-7.8.5
+
+    var literal = schema.pattern.match(/^\/(.+)\/([img]*)$/);
+
+    if (literal) {
+      body = literal[1];
+      flags = literal[2];
+    } else {
+      body = schema.pattern;
+    }
+
+    regexp = new RegExp(body, flags);
+  }
+
+  if (!regexp.test(data)) {
+    return this.createError(ErrorCodes.STRING_PATTERN, {
+      pattern: schema.pattern
+    }, '', '/pattern', null, data, schema);
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateArray = function validateArray(data, schema, dataPointerPath) {
+  if (!Array.isArray(data)) {
+    return null;
+  }
+
+  return this.validateArrayLength(data, schema, dataPointerPath) || this.validateArrayUniqueItems(data, schema, dataPointerPath) || this.validateArrayItems(data, schema, dataPointerPath) || null;
+};
+
+ValidatorContext.prototype.validateArrayLength = function validateArrayLength(data, schema) {
+  var error;
+
+  if (schema.minItems && schema.minItems === schema.maxItems) {
+    if (data.length !== schema.minItems) {
+      error = this.createError(ErrorCodes.ARRAY_LENGTH_NOT_MATCH, {
+        length: data.length,
+        minimum: schema.minItems
+      }, '', '/minItems', null, data, schema);
+
+      if (this.handleError(error)) {
+        return error;
+      }
+    }
+  }
+
+  if (schema.minItems !== undefined) {
+    if (data.length < schema.minItems) {
+      error = this.createError(ErrorCodes.ARRAY_LENGTH_SHORT, {
+        length: data.length,
+        minimum: schema.minItems
+      }, '', '/minItems', null, data, schema);
+
+      if (this.handleError(error)) {
+        return error;
+      }
+    }
+  }
+
+  if (schema.maxItems !== undefined) {
+    if (data.length > schema.maxItems) {
+      error = this.createError(ErrorCodes.ARRAY_LENGTH_LONG, {
+        length: data.length,
+        maximum: schema.maxItems
+      }, '', '/maxItems', null, data, schema);
+
+      if (this.handleError(error)) {
+        return error;
+      }
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateArrayUniqueItems = function validateArrayUniqueItems(data, schema) {
+  if (schema.uniqueItems) {
+    for (var i = 0; i < data.length; i++) {
+      for (var j = i + 1; j < data.length; j++) {
+        if (recursiveCompare(data[i], data[j])) {
+          var error = this.createError(ErrorCodes.ARRAY_UNIQUE, {
+            match1: i,
+            match2: j
+          }, '', '/uniqueItems', null, data, schema);
+
+          if (this.handleError(error)) {
+            return error;
+          }
+        }
+      }
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateArrayItems = function validateArrayItems(data, schema, dataPointerPath) {
+  if (schema.items === undefined) {
+    return null;
+  }
+
+  var error, i;
+
+  if (Array.isArray(schema.items)) {
+    for (i = 0; i < data.length; i++) {
+      if (i < schema.items.length) {
+        if (error = this.validateAll(data[i], schema.items[i], [i], ["items", i], dataPointerPath + "/" + i)) {
+          return error;
+        }
+      } else if (schema.additionalItems !== undefined) {
+        if (typeof schema.additionalItems === "boolean") {
+          if (!schema.additionalItems) {
+            error = this.createError(ErrorCodes.ARRAY_ADDITIONAL_ITEMS, {}, '/' + i, '/additionalItems', null, data, schema);
+
+            if (this.handleError(error)) {
+              return error;
+            }
+          }
+        } else if (error = this.validateAll(data[i], schema.additionalItems, [i], ["additionalItems"], dataPointerPath + "/" + i)) {
+          return error;
+        }
+      }
+    }
+  } else {
+    for (i = 0; i < data.length; i++) {
+      if (error = this.validateAll(data[i], schema.items, [i], ["items"], dataPointerPath + "/" + i)) {
+        return error;
+      }
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateObject = function validateObject(data, schema, dataPointerPath) {
+  if (_typeof(data) !== "object" || data === null || Array.isArray(data)) {
+    return null;
+  }
+
+  return this.validateObjectMinMaxProperties(data, schema, dataPointerPath) || this.validateObjectRequiredProperties(data, schema, dataPointerPath) || this.validateObjectProperties(data, schema, dataPointerPath) || this.validateObjectDependencies(data, schema, dataPointerPath) || null;
+};
+
+ValidatorContext.prototype.validateObjectMinMaxProperties = function validateObjectMinMaxProperties(data, schema) {
+  var keys = Object.keys(data);
+  var error;
+
+  if (schema.minProperties !== undefined) {
+    if (keys.length < schema.minProperties) {
+      error = this.createError(ErrorCodes.OBJECT_PROPERTIES_MINIMUM, {
+        propertyCount: keys.length,
+        minimum: schema.minProperties
+      }, "", "/minProperties", null, data, schema);
+
+      if (this.handleError(error)) {
+        return error;
+      }
+    }
+  }
+
+  if (schema.maxProperties !== undefined) {
+    if (keys.length > schema.maxProperties) {
+      error = this.createError(ErrorCodes.OBJECT_PROPERTIES_MAXIMUM, {
+        propertyCount: keys.length,
+        maximum: schema.maxProperties
+      }, "", "/maxProperties", null, data, schema);
+
+      if (this.handleError(error)) {
+        return error;
+      }
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateObjectRequiredProperties = function validateObjectRequiredProperties(data, schema) {
+  if (schema.required !== undefined) {
+    for (var i = 0; i < schema.required.length; i++) {
+      var key = schema.required[i];
+      var propertyCondition = schema.properties[key].condition;
+
+      if (propertyCondition) {
+        var conditionResult;
+
+        try {
+          /*jslint evil: true */
+          conditionResult = new Function("model", "rootModel", "parentModel", "return " + propertyCondition + ";")(this.root, this.root, data);
+        } catch (e) {
+          console.error(e);
+        }
+
+        if (!conditionResult) {
+          //skip false condition properties
+          continue;
+        }
+      }
+
+      if (data[key] === undefined || data[key] === "" || data[key] === null) {
+        var error = this.createError(ErrorCodes.OBJECT_REQUIRED, {
+          key: key
+        }, "", "/required/" + i, null, data, schema);
+
+        if (this.handleError(error)) {
+          return error;
+        }
+      }
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateObjectProperties = function validateObjectProperties(data, schema, dataPointerPath) {
+  var error;
+
+  for (var key in data) {
+    var keyPointerPath = dataPointerPath + "/" + key.replace(/~/g, "~0").replace(/\//g, "~1");
+    var foundMatch = false;
+
+    if (schema.properties !== undefined && schema.properties[key] !== undefined) {
+      foundMatch = true;
+
+      if (error = this.validateAll(data[key], schema.properties[key], [key], ["properties", key], keyPointerPath)) {
+        return error;
+      }
+    }
+
+    if (schema.patternProperties !== undefined) {
+      for (var patternKey in schema.patternProperties) {
+        var regexp = new RegExp(patternKey);
+
+        if (regexp.test(key)) {
+          foundMatch = true;
+
+          if (error = this.validateAll(data[key], schema.patternProperties[patternKey], [key], ["patternProperties", patternKey], keyPointerPath)) {
+            return error;
+          }
+        }
+      }
+    }
+
+    if (!foundMatch) {
+      if (schema.additionalProperties !== undefined) {
+        if (this.trackUnknownProperties) {
+          this.knownPropertyPaths[keyPointerPath] = true;
+          delete this.unknownPropertyPaths[keyPointerPath];
+        }
+
+        if (typeof schema.additionalProperties === "boolean") {
+          if (!schema.additionalProperties) {
+            error = this.createError(ErrorCodes.OBJECT_ADDITIONAL_PROPERTIES, {
+              key: key
+            }, "", "/additionalProperties", null, data, schema).prefixWith(key, null);
+
+            if (this.handleError(error)) {
+              return error;
+            }
+          }
+        } else {
+          if (error = this.validateAll(data[key], schema.additionalProperties, [key], ["additionalProperties"], keyPointerPath)) {
+            return error;
+          }
+        }
+      } else if (this.trackUnknownProperties && !this.knownPropertyPaths[keyPointerPath]) {
+        this.unknownPropertyPaths[keyPointerPath] = true;
+      }
+    } else if (this.trackUnknownProperties) {
+      this.knownPropertyPaths[keyPointerPath] = true;
+      delete this.unknownPropertyPaths[keyPointerPath];
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateObjectDependencies = function validateObjectDependencies(data, schema, dataPointerPath) {
+  var error;
+
+  if (schema.dependencies !== undefined) {
+    for (var depKey in schema.dependencies) {
+      if (data[depKey] !== undefined) {
+        var dep = schema.dependencies[depKey];
+
+        if (typeof dep === "string") {
+          if (data[dep] === undefined) {
+            error = this.createError(ErrorCodes.OBJECT_DEPENDENCY_KEY, {
+              key: depKey,
+              missing: dep
+            }, "", "", null, data, schema).prefixWith(null, depKey).prefixWith(null, "dependencies");
+
+            if (this.handleError(error)) {
+              return error;
+            }
+          }
+        } else if (Array.isArray(dep)) {
+          for (var i = 0; i < dep.length; i++) {
+            var requiredKey = dep[i];
+
+            if (data[requiredKey] === undefined) {
+              error = this.createError(ErrorCodes.OBJECT_DEPENDENCY_KEY, {
+                key: depKey,
+                missing: requiredKey
+              }, "", "/" + i, null, data, schema).prefixWith(null, depKey).prefixWith(null, "dependencies");
+
+              if (this.handleError(error)) {
+                return error;
+              }
+            }
+          }
+        } else {
+          if (error = this.validateAll(data, dep, [], ["dependencies", depKey], dataPointerPath)) {
+            return error;
+          }
+        }
+      }
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateCombinations = function validateCombinations(data, schema, dataPointerPath) {
+  return this.validateAllOf(data, schema, dataPointerPath) || this.validateAnyOf(data, schema, dataPointerPath) || this.validateOneOf(data, schema, dataPointerPath) || this.validateNot(data, schema, dataPointerPath) || null;
+};
+
+ValidatorContext.prototype.validateAllOf = function validateAllOf(data, schema, dataPointerPath) {
+  if (schema.allOf === undefined) {
+    return null;
+  }
+
+  var error;
+
+  for (var i = 0; i < schema.allOf.length; i++) {
+    var subSchema = schema.allOf[i];
+
+    if (error = this.validateAll(data, subSchema, [], ["allOf", i], dataPointerPath)) {
+      return error;
+    }
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateAnyOf = function validateAnyOf(data, schema, dataPointerPath) {
+  if (schema.anyOf === undefined) {
+    return null;
+  }
+
+  var errors = [];
+  var startErrorCount = this.errors.length;
+  var oldUnknownPropertyPaths, oldKnownPropertyPaths;
+
+  if (this.trackUnknownProperties) {
+    oldUnknownPropertyPaths = this.unknownPropertyPaths;
+    oldKnownPropertyPaths = this.knownPropertyPaths;
+  }
+
+  var errorAtEnd = true;
+
+  for (var i = 0; i < schema.anyOf.length; i++) {
+    if (this.trackUnknownProperties) {
+      this.unknownPropertyPaths = {};
+      this.knownPropertyPaths = {};
+    }
+
+    var subSchema = schema.anyOf[i];
+    var errorCount = this.errors.length;
+    var error = this.validateAll(data, subSchema, [], ["anyOf", i], dataPointerPath);
+
+    if (error === null && errorCount === this.errors.length) {
+      this.errors = this.errors.slice(0, startErrorCount);
+
+      if (this.trackUnknownProperties) {
+        for (var knownKey in this.knownPropertyPaths) {
+          oldKnownPropertyPaths[knownKey] = true;
+          delete oldUnknownPropertyPaths[knownKey];
+        }
+
+        for (var unknownKey in this.unknownPropertyPaths) {
+          if (!oldKnownPropertyPaths[unknownKey]) {
+            oldUnknownPropertyPaths[unknownKey] = true;
+          }
+        } // We need to continue looping so we catch all the property definitions, but we don't want to return an error
+
+
+        errorAtEnd = false;
+        continue;
+      }
+
+      return null;
+    }
+
+    if (error) {
+      errors.push(error.prefixWith(null, "" + i).prefixWith(null, "anyOf"));
+    }
+  }
+
+  if (this.trackUnknownProperties) {
+    this.unknownPropertyPaths = oldUnknownPropertyPaths;
+    this.knownPropertyPaths = oldKnownPropertyPaths;
+  }
+
+  if (errorAtEnd) {
+    errors = errors.concat(this.errors.slice(startErrorCount));
+    this.errors = this.errors.slice(0, startErrorCount);
+    return this.createError(ErrorCodes.ANY_OF_MISSING, {}, "", "/anyOf", errors, data, schema);
+  }
+};
+
+ValidatorContext.prototype.validateOneOf = function validateOneOf(data, schema, dataPointerPath) {
+  if (schema.oneOf === undefined) {
+    return null;
+  }
+
+  var validIndex = null;
+  var errors = [];
+  var startErrorCount = this.errors.length;
+  var oldUnknownPropertyPaths, oldKnownPropertyPaths;
+
+  if (this.trackUnknownProperties) {
+    oldUnknownPropertyPaths = this.unknownPropertyPaths;
+    oldKnownPropertyPaths = this.knownPropertyPaths;
+  }
+
+  for (var i = 0; i < schema.oneOf.length; i++) {
+    if (this.trackUnknownProperties) {
+      this.unknownPropertyPaths = {};
+      this.knownPropertyPaths = {};
+    }
+
+    var subSchema = schema.oneOf[i];
+    var errorCount = this.errors.length;
+    var error = this.validateAll(data, subSchema, [], ["oneOf", i], dataPointerPath);
+
+    if (error === null && errorCount === this.errors.length) {
+      if (validIndex === null) {
+        validIndex = i;
+      } else {
+        this.errors = this.errors.slice(0, startErrorCount);
+        return this.createError(ErrorCodes.ONE_OF_MULTIPLE, {
+          index1: validIndex,
+          index2: i
+        }, "", "/oneOf", null, data, schema);
+      }
+
+      if (this.trackUnknownProperties) {
+        for (var knownKey in this.knownPropertyPaths) {
+          oldKnownPropertyPaths[knownKey] = true;
+          delete oldUnknownPropertyPaths[knownKey];
+        }
+
+        for (var unknownKey in this.unknownPropertyPaths) {
+          if (!oldKnownPropertyPaths[unknownKey]) {
+            oldUnknownPropertyPaths[unknownKey] = true;
+          }
+        }
+      }
+    } else if (error) {
+      errors.push(error);
+    }
+  }
+
+  if (this.trackUnknownProperties) {
+    this.unknownPropertyPaths = oldUnknownPropertyPaths;
+    this.knownPropertyPaths = oldKnownPropertyPaths;
+  }
+
+  if (validIndex === null) {
+    errors = errors.concat(this.errors.slice(startErrorCount));
+    this.errors = this.errors.slice(0, startErrorCount);
+    return this.createError(ErrorCodes.ONE_OF_MISSING, {}, "", "/oneOf", errors, data, schema);
+  } else {
+    this.errors = this.errors.slice(0, startErrorCount);
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateNot = function validateNot(data, schema, dataPointerPath) {
+  if (schema.not === undefined) {
+    return null;
+  }
+
+  var oldErrorCount = this.errors.length;
+  var oldUnknownPropertyPaths, oldKnownPropertyPaths;
+
+  if (this.trackUnknownProperties) {
+    oldUnknownPropertyPaths = this.unknownPropertyPaths;
+    oldKnownPropertyPaths = this.knownPropertyPaths;
+    this.unknownPropertyPaths = {};
+    this.knownPropertyPaths = {};
+  }
+
+  var error = this.validateAll(data, schema.not, null, null, dataPointerPath);
+  var notErrors = this.errors.slice(oldErrorCount);
+  this.errors = this.errors.slice(0, oldErrorCount);
+
+  if (this.trackUnknownProperties) {
+    this.unknownPropertyPaths = oldUnknownPropertyPaths;
+    this.knownPropertyPaths = oldKnownPropertyPaths;
+  }
+
+  if (error === null && notErrors.length === 0) {
+    return this.createError(ErrorCodes.NOT_PASSED, {}, "", "/not", null, data, schema);
+  }
+
+  return null;
+};
+
+ValidatorContext.prototype.validateHypermedia = function validateCombinations(data, schema, dataPointerPath) {
+  if (!schema.links) {
+    return null;
+  }
+
+  var error;
+
+  for (var i = 0; i < schema.links.length; i++) {
+    var ldo = schema.links[i];
+
+    if (ldo.rel === "describedby") {
+      var template = new UriTemplate(ldo.href);
+      var allPresent = true;
+
+      for (var j = 0; j < template.varNames.length; j++) {
+        if (!(template.varNames[j] in data)) {
+          allPresent = false;
+          break;
+        }
+      }
+
+      if (allPresent) {
+        var schemaUrl = template.fillFromObject(data);
+        var subSchema = {
+          "$ref": schemaUrl
+        };
+
+        if (error = this.validateAll(data, subSchema, [], ["links", i], dataPointerPath)) {
+          return error;
+        }
+      }
+    }
+  }
+}; // parseURI() and resolveUrl() are from https://gist.github.com/1088850
+//   -  released as public domain by author ("Yaffle") - see comments on gist
+
+
+function parseURI(url) {
+  var m = String(url).replace(/^\s+|\s+$/g, '').match(/^([^:\/?#]+:)?(\/\/(?:[^:@]*(?::[^:@]*)?@)?(([^:\/?#]*)(?::(\d*))?))?([^?#]*)(\?[^#]*)?(#[\s\S]*)?/); // authority = '//' + user + ':' + pass '@' + hostname + ':' port
+
+  return m ? {
+    href: m[0] || '',
+    protocol: m[1] || '',
+    authority: m[2] || '',
+    host: m[3] || '',
+    hostname: m[4] || '',
+    port: m[5] || '',
+    pathname: m[6] || '',
+    search: m[7] || '',
+    hash: m[8] || ''
+  } : null;
+}
+
+function resolveUrl(base, href) {
+  // RFC 3986
+  function removeDotSegments(input) {
+    var output = [];
+    input.replace(/^(\.\.?(\/|$))+/, '').replace(/\/(\.(\/|$))+/g, '/').replace(/\/\.\.$/, '/../').replace(/\/?[^\/]*/g, function (p) {
+      if (p === '/..') {
+        output.pop();
+      } else {
+        output.push(p);
+      }
+    });
+    return output.join('').replace(/^\//, input.charAt(0) === '/' ? '/' : '');
+  }
+
+  href = parseURI(href || '');
+  base = parseURI(base || '');
+  return !href || !base ? null : (href.protocol || base.protocol) + (href.protocol || href.authority ? href.authority : base.authority) + removeDotSegments(href.protocol || href.authority || href.pathname.charAt(0) === '/' ? href.pathname : href.pathname ? (base.authority && !base.pathname ? '/' : '') + base.pathname.slice(0, base.pathname.lastIndexOf('/') + 1) + href.pathname : base.pathname) + (href.protocol || href.authority || href.pathname ? href.search : href.search || base.search) + href.hash;
+}
+
+function getDocumentUri(uri) {
+  return uri.split('#')[0];
+}
+
+function normSchema(schema, baseUri) {
+  if (schema && _typeof(schema) === "object") {
+    if (baseUri === undefined) {
+      baseUri = schema.id;
+    } else if (typeof schema.id === "string") {
+      baseUri = resolveUrl(baseUri, schema.id);
+      schema.id = baseUri;
+    }
+
+    if (Array.isArray(schema)) {
+      for (var i = 0; i < schema.length; i++) {
+        normSchema(schema[i], baseUri);
+      }
+    } else {
+      if (typeof schema['$ref'] === "string") {
+        schema['$ref'] = resolveUrl(baseUri, schema['$ref']);
+      }
+
+      for (var key in schema) {
+        if (key !== "enum") {
+          normSchema(schema[key], baseUri);
+        }
+      }
+    }
+  }
+}
+
+var get = __webpack_require__(11);
+
+function defaultErrorReporter(language, languages) {
+  language = language || 'en';
+  var errorMessages = languages[language];
+  return function (error, data, schema) {
+    var messageTemplate = errorMessages[error.code] || ErrorMessagesDefault[error.code];
+
+    if (typeof messageTemplate !== 'string') {
+      return "Unknown error code " + error.code + ": " + JSON.stringify(error.messageParams);
+    }
+
+    var messageParams = Object.assign({}, error.params, {
+      data: data,
+      schema: schema,
+      form: schema.form || {}
+    });
+    return messageTemplate.replace(/\{([^{}]*)\}/g, function (whole, varName) {
+      var subValue = get(messageParams, varName);
+
+      if (typeof subValue === 'string' || typeof subValue === 'number') {
+        return subValue;
+      } else {
+        return whole;
+      }
+    });
+  };
+}
+
+var ErrorCodes = {
+  INVALID_TYPE: 0,
+  ENUM_MISMATCH: 1,
+  ANY_OF_MISSING: 10,
+  ONE_OF_MISSING: 11,
+  ONE_OF_MULTIPLE: 12,
+  NOT_PASSED: 13,
+  // Numeric errors
+  NUMBER_MULTIPLE_OF: 100,
+  NUMBER_MINIMUM: 101,
+  NUMBER_MINIMUM_EXCLUSIVE: 102,
+  NUMBER_MAXIMUM: 103,
+  NUMBER_MAXIMUM_EXCLUSIVE: 104,
+  NUMBER_NOT_A_NUMBER: 105,
+  // String errors
+  STRING_LENGTH_SHORT: 200,
+  STRING_LENGTH_LONG: 201,
+  STRING_PATTERN: 202,
+  // Object errors
+  OBJECT_PROPERTIES_MINIMUM: 300,
+  OBJECT_PROPERTIES_MAXIMUM: 301,
+  OBJECT_REQUIRED: 302,
+  OBJECT_ADDITIONAL_PROPERTIES: 303,
+  OBJECT_DEPENDENCY_KEY: 304,
+  // Array errors
+  ARRAY_LENGTH_SHORT: 400,
+  ARRAY_LENGTH_LONG: 401,
+  ARRAY_UNIQUE: 402,
+  ARRAY_ADDITIONAL_ITEMS: 403,
+  ARRAY_LENGTH_NOT_MATCH: 404,
+  // Custom/user-defined errors
+  FORMAT_CUSTOM: 500,
+  KEYWORD_CUSTOM: 501,
+  // Schema structure
+  CIRCULAR_REFERENCE: 600,
+  // Non-standard validation options
+  UNKNOWN_PROPERTY: 1000
+};
+var ErrorCodeLookup = {};
+
+for (var key in ErrorCodes) {
+  ErrorCodeLookup[ErrorCodes[key]] = key;
+}
+
+var ErrorMessagesDefault = {
+  INVALID_TYPE: "Invalid type: {type} (expected {expected})",
+  ENUM_MISMATCH: "No enum match for: {value}",
+  ANY_OF_MISSING: "Data does not match any schemas from \"anyOf\"",
+  ONE_OF_MISSING: "Data does not match any schemas from \"oneOf\"",
+  ONE_OF_MULTIPLE: "Data is valid against more than one schema from \"oneOf\": indices {index1} and {index2}",
+  NOT_PASSED: "Data matches schema from \"not\"",
+  // Numeric errors
+  NUMBER_MULTIPLE_OF: "Value {value} is not a multiple of {multipleOf}",
+  NUMBER_MINIMUM: "Value {value} is less than minimum {minimum}",
+  NUMBER_MINIMUM_EXCLUSIVE: "Value {value} is equal to exclusive minimum {minimum}",
+  NUMBER_MAXIMUM: "Value {value} is greater than maximum {maximum}",
+  NUMBER_MAXIMUM_EXCLUSIVE: "Value {value} is equal to exclusive maximum {maximum}",
+  NUMBER_NOT_A_NUMBER: "Value {value} is not a valid number",
+  // String errors
+  STRING_LENGTH_SHORT: "String is too short ({length} chars), minimum {minimum}",
+  STRING_LENGTH_LONG: "String is too long ({length} chars), maximum {maximum}",
+  STRING_PATTERN: "String does not match pattern: {pattern}",
+  // Object errors
+  OBJECT_PROPERTIES_MINIMUM: "Too few properties defined ({propertyCount}), minimum {minimum}",
+  OBJECT_PROPERTIES_MAXIMUM: "Too many properties defined ({propertyCount}), maximum {maximum}",
+  OBJECT_REQUIRED: "Missing required property: {key}",
+  OBJECT_ADDITIONAL_PROPERTIES: "Additional properties not allowed",
+  OBJECT_DEPENDENCY_KEY: "Dependency failed - key must exist: {missing} (due to key: {key})",
+  // Array errors
+  ARRAY_LENGTH_SHORT: "Array is too short ({data.length}), minimum {schema.minItems}",
+  ARRAY_LENGTH_LONG: "Array is too long ({data.length}), maximum {schema.maxItems}",
+  ARRAY_LENGTH_NOT_MATCH: "Array length should be {schema.minItems}, current:{data.length}",
+  ARRAY_UNIQUE: "Array items are not unique (indices {match1} and {match2})",
+  ARRAY_ADDITIONAL_ITEMS: "Additional items not allowed",
+  // Format errors
+  FORMAT_CUSTOM: "Format validation failed ({message})",
+  KEYWORD_CUSTOM: "Keyword failed: {key} ({message})",
+  // Schema structure
+  CIRCULAR_REFERENCE: "Circular $refs: {urls}",
+  // Non-standard validation options
+  UNKNOWN_PROPERTY: "Unknown property (not in schema)"
+};
+
+function ValidationError(code, params, dataPath, schemaPath, subErrors) {
+  Error.call(this);
+
+  if (code === undefined) {
+    throw new Error("No error code supplied: " + schemaPath);
+  }
+
+  this.message = '';
+  this.params = params;
+  this.code = code;
+  this.dataPath = dataPath || "";
+  this.schemaPath = schemaPath || "";
+  this.subErrors = subErrors || null;
+  var err = new Error(this.message);
+  this.stack = err.stack || err.stacktrace;
+
+  if (!this.stack) {
+    try {
+      throw err;
+    } catch (err) {
+      this.stack = err.stack || err.stacktrace;
+    }
+  }
+}
+
+ValidationError.prototype = Object.create(Error.prototype);
+ValidationError.prototype.constructor = ValidationError;
+ValidationError.prototype.name = 'ValidationError';
+
+ValidationError.prototype.prefixWith = function (dataPrefix, schemaPrefix) {
+  if (dataPrefix !== null) {
+    dataPrefix = dataPrefix.replace(/~/g, "~0").replace(/\//g, "~1");
+    this.dataPath = "/" + dataPrefix + this.dataPath;
+  }
+
+  if (schemaPrefix !== null) {
+    schemaPrefix = schemaPrefix.replace(/~/g, "~0").replace(/\//g, "~1");
+    this.schemaPath = "/" + schemaPrefix + this.schemaPath;
+  }
+
+  if (this.subErrors !== null) {
+    for (var i = 0; i < this.subErrors.length; i++) {
+      this.subErrors[i].prefixWith(dataPrefix, schemaPrefix);
+    }
+  }
+
+  return this;
+};
+
+function isTrustedUrl(baseUrl, testUrl) {
+  if (testUrl.substring(0, baseUrl.length) === baseUrl) {
+    var remainder = testUrl.substring(baseUrl.length);
+
+    if (testUrl.length > 0 && testUrl.charAt(baseUrl.length - 1) === "/" || remainder.charAt(0) === "#" || remainder.charAt(0) === "?") {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function createApi(language) {
+  var languages = {};
+  var globalContext = new ValidatorContext(languages);
+  var currentLanguage;
+  var customErrorReporter;
+  var api = {
+    setErrorReporter: function setErrorReporter(reporter) {
+      if (typeof reporter === 'string') {
+        return this.language(reporter);
+      }
+
+      customErrorReporter = reporter;
+      return true;
+    },
+    addFormat: function addFormat() {
+      globalContext.addFormat.apply(globalContext, arguments);
+    },
+    language: function language(code) {
+      if (!code) {
+        return currentLanguage;
+      }
+
+      if (!languages[code]) {
+        code = code.split('-')[0]; // fall back to base language
+      }
+
+      if (languages[code]) {
+        currentLanguage = code;
+        return code; // so you can tell if fall-back has happened
+      }
+
+      return false;
+    },
+    addLanguage: function addLanguage(code, messageMap) {
+      var key;
+
+      for (key in ErrorCodes) {
+        if (messageMap[key] && !messageMap[ErrorCodes[key]]) {
+          messageMap[ErrorCodes[key]] = messageMap[key];
+        }
+      }
+
+      var rootCode = code.split('-')[0];
+
+      if (!languages[rootCode]) {
+        // use for base language if not yet defined
+        languages[code] = messageMap;
+        languages[rootCode] = messageMap;
+      } else {
+        languages[code] = Object.create(languages[rootCode]);
+
+        for (key in messageMap) {
+          if (typeof languages[rootCode][key] === 'undefined') {
+            languages[rootCode][key] = messageMap[key];
+          }
+
+          languages[code][key] = messageMap[key];
+        }
+      }
+
+      return this;
+    },
+    freshApi: function freshApi(language) {
+      var result = createApi();
+
+      if (language) {
+        result.language(language);
+      }
+
+      return result;
+    },
+    validate: function validate(data, schema, checkRecursive, banUnknownProperties) {
+      var _this3 = this;
+
+      this.root = data;
+      var def = defaultErrorReporter(currentLanguage, languages);
+      var errorReporter = customErrorReporter ? function (error, data, schema) {
+        return customErrorReporter(error, data, schema) || def(error, data, schema);
+      } : def;
+      var context = new ValidatorContext(languages, globalContext, false, errorReporter, checkRecursive, banUnknownProperties);
+
+      if (typeof schema === "string") {
+        schema = {
+          "$ref": schema
+        };
+      }
+
+      context.addSchema("", schema);
+      var error = context.validateAll(data, schema, null, null, "");
+
+      if (!error && banUnknownProperties) {
+        error = context.banUnknownProperties(data, schema);
+      }
+
+      return new Promise(function (resolve) {
+        var handleError = function handleError(error) {
+          _this3.error = error;
+          _this3.missing = context.missing;
+          _this3.valid = error === null || error === undefined;
+          resolve(_this3.valid);
+        };
+
+        if (!error) {
+          context.getFormatValidationResults().then(function (errors) {
+            error = errors[0];
+            handleError(error);
+          });
+        } else {
+          handleError(error);
+        }
+      });
+    },
+    validateResult: function validateResult() {
+      var result = {};
+      return this.validate.apply(result, arguments).then(function () {
+        return result;
+      });
+    },
+    validateMultiple: function validateMultiple(data, schema, checkRecursive, banUnknownProperties) {
+      var def = defaultErrorReporter(currentLanguage, languages);
+      var errorReporter = customErrorReporter ? function (error, data, schema) {
+        return customErrorReporter(error, data, schema) || def(error, data, schema);
+      } : def;
+      var context = new ValidatorContext(languages, globalContext, true, errorReporter, checkRecursive, banUnknownProperties);
+
+      if (typeof schema === "string") {
+        schema = {
+          "$ref": schema
+        };
+      }
+
+      context.addSchema("", schema);
+      context.validateAll(data, schema, null, null, "");
+
+      if (banUnknownProperties) {
+        context.banUnknownProperties(data, schema);
+      }
+
+      return context.getFormatValidationResults().then(function (errors) {
+        errors = errors.filter(function (e) {
+          return e !== undefined;
+        });
+        var result = {};
+        result.errors = context.errors.concat(errors);
+        result.missing = context.missing;
+        result.valid = result.errors.length === 0;
+        return result;
+      });
+    },
+    addSchema: function addSchema() {
+      return globalContext.addSchema.apply(globalContext, arguments);
+    },
+    getSchema: function getSchema() {
+      return globalContext.getSchema.apply(globalContext, arguments);
+    },
+    getSchemaMap: function getSchemaMap() {
+      return globalContext.getSchemaMap.apply(globalContext, arguments);
+    },
+    getSchemaUris: function getSchemaUris() {
+      return globalContext.getSchemaUris.apply(globalContext, arguments);
+    },
+    getMissingUris: function getMissingUris() {
+      return globalContext.getMissingUris.apply(globalContext, arguments);
+    },
+    dropSchemas: function dropSchemas() {
+      globalContext.dropSchemas.apply(globalContext, arguments);
+    },
+    defineKeyword: function defineKeyword() {
+      globalContext.defineKeyword.apply(globalContext, arguments);
+    },
+    defineError: function defineError(codeName, codeNumber, defaultMessage) {
+      if (typeof codeName !== 'string' || !/^[A-Z]+(_[A-Z]+)*$/.test(codeName)) {
+        throw new Error('Code name must be a string in UPPER_CASE_WITH_UNDERSCORES');
+      }
+
+      if (typeof codeNumber !== 'number' || codeNumber % 1 !== 0 || codeNumber < 10000) {
+        throw new Error('Code number must be an integer > 10000');
+      }
+
+      if (typeof ErrorCodes[codeName] !== 'undefined') {
+        throw new Error('Error already defined: ' + codeName + ' as ' + ErrorCodes[codeName]);
+      }
+
+      if (typeof ErrorCodeLookup[codeNumber] !== 'undefined') {
+        throw new Error('Error code already used: ' + ErrorCodeLookup[codeNumber] + ' as ' + codeNumber);
+      }
+
+      ErrorCodes[codeName] = codeNumber;
+      ErrorCodeLookup[codeNumber] = codeName;
+      ErrorMessagesDefault[codeName] = ErrorMessagesDefault[codeNumber] = defaultMessage;
+
+      for (var langCode in languages) {
+        var language = languages[langCode];
+
+        if (language[codeName]) {
+          language[codeNumber] = language[codeNumber] || language[codeName];
+        }
+      }
+    },
+    reset: function reset() {
+      globalContext.reset();
+      this.error = null;
+      this.missing = [];
+      this.valid = true;
+    },
+    missing: [],
+    error: null,
+    valid: true,
+    normSchema: normSchema,
+    resolveUrl: resolveUrl,
+    getDocumentUri: getDocumentUri,
+    errorCodes: ErrorCodes,
+    languages: languages
+  };
+  api.language(language || 'en');
+  return api;
+}
+
+var tv4 = createApi();
+tv4.addLanguage('en-gb', ErrorMessagesDefault); //legacy property
+
+tv4.tv4 = tv4;
+module.exports = tv4; // used by _header.js to globalise.
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGet = __webpack_require__(12);
+
+/**
+ * Gets the value at `path` of `object`. If the resolved value is
+ * `undefined`, the `defaultValue` is returned in its place.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.7.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+ * @returns {*} Returns the resolved value.
+ * @example
+ *
+ * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ *
+ * _.get(object, 'a[0].b.c');
+ * // => 3
+ *
+ * _.get(object, ['a', '0', 'b', 'c']);
+ * // => 3
+ *
+ * _.get(object, 'a.b.c', 'default');
+ * // => 'default'
+ */
+function get(object, path, defaultValue) {
+  var result = object == null ? undefined : baseGet(object, path);
+  return result === undefined ? defaultValue : result;
+}
+
+module.exports = get;
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var castPath = __webpack_require__(13),
+    toKey = __webpack_require__(53);
+
+/**
+ * The base implementation of `_.get` without support for default values.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @returns {*} Returns the resolved value.
+ */
+function baseGet(object, path) {
+  path = castPath(path, object);
+
+  var index = 0,
+      length = path.length;
+
+  while (object != null && index < length) {
+    object = object[toKey(path[index++])];
+  }
+  return (index && index == length) ? object : undefined;
+}
+
+module.exports = baseGet;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArray = __webpack_require__(3),
+    isKey = __webpack_require__(14),
+    stringToPath = __webpack_require__(20),
+    toString = __webpack_require__(50);
+
+/**
+ * Casts `value` to a path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {Array} Returns the cast property path array.
+ */
+function castPath(value, object) {
+  if (isArray(value)) {
+    return value;
+  }
+  return isKey(value, object) ? [value] : stringToPath(toString(value));
+}
+
+module.exports = castPath;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArray = __webpack_require__(3),
+    isSymbol = __webpack_require__(4);
+
+/** Used to match property names within property paths. */
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/;
+
+/**
+ * Checks if `value` is a property name and not a property path.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+ */
+function isKey(value, object) {
+  if (isArray(value)) {
+    return false;
+  }
+  var type = typeof value;
+  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
+      value == null || isSymbol(value)) {
+    return true;
+  }
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+    (object != null && value in Object(object));
+}
+
+module.exports = isKey;
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(16)))
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(5);
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+module.exports = getRawTag;
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+module.exports = objectToString;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var memoizeCapped = __webpack_require__(21);
+
+/** Used to match property names within property paths. */
+var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+
+/** Used to match backslashes in property paths. */
+var reEscapeChar = /\\(\\)?/g;
+
+/**
+ * Converts `string` to a property path array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the property path array.
+ */
+var stringToPath = memoizeCapped(function(string) {
+  var result = [];
+  if (string.charCodeAt(0) === 46 /* . */) {
+    result.push('');
+  }
+  string.replace(rePropName, function(match, number, quote, subString) {
+    result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
+  });
+  return result;
+});
+
+module.exports = stringToPath;
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var memoize = __webpack_require__(22);
+
+/** Used as the maximum memoize cache size. */
+var MAX_MEMOIZE_SIZE = 500;
+
+/**
+ * A specialized version of `_.memoize` which clears the memoized function's
+ * cache when it exceeds `MAX_MEMOIZE_SIZE`.
+ *
+ * @private
+ * @param {Function} func The function to have its output memoized.
+ * @returns {Function} Returns the new memoized function.
+ */
+function memoizeCapped(func) {
+  var result = memoize(func, function(key) {
+    if (cache.size === MAX_MEMOIZE_SIZE) {
+      cache.clear();
+    }
+    return key;
+  });
+
+  var cache = result.cache;
+  return result;
+}
+
+module.exports = memoizeCapped;
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var MapCache = __webpack_require__(23);
+
+/** Error message constants. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `clear`, `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+function memoize(func, resolver) {
+  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var memoized = function() {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result) || cache;
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || MapCache);
+  return memoized;
+}
+
+// Expose `MapCache`.
+memoize.Cache = MapCache;
+
+module.exports = memoize;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var mapCacheClear = __webpack_require__(24),
+    mapCacheDelete = __webpack_require__(45),
+    mapCacheGet = __webpack_require__(47),
+    mapCacheHas = __webpack_require__(48),
+    mapCacheSet = __webpack_require__(49);
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+module.exports = MapCache;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Hash = __webpack_require__(25),
+    ListCache = __webpack_require__(37),
+    Map = __webpack_require__(44);
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+
+module.exports = mapCacheClear;
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var hashClear = __webpack_require__(26),
+    hashDelete = __webpack_require__(33),
+    hashGet = __webpack_require__(34),
+    hashHas = __webpack_require__(35),
+    hashSet = __webpack_require__(36);
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+module.exports = Hash;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__(0);
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+module.exports = hashClear;
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isFunction = __webpack_require__(28),
+    isMasked = __webpack_require__(29),
+    isObject = __webpack_require__(9),
+    toSource = __webpack_require__(31);
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+module.exports = baseIsNative;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(7),
+    isObject = __webpack_require__(9);
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var coreJsData = __webpack_require__(30);
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+module.exports = isMasked;
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(6);
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+module.exports = coreJsData;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+module.exports = toSource;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+module.exports = getValue;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = hashDelete;
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__(0);
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+module.exports = hashGet;
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__(0);
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
+}
+
+module.exports = hashHas;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var nativeCreate = __webpack_require__(0);
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+module.exports = hashSet;
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var listCacheClear = __webpack_require__(38),
+    listCacheDelete = __webpack_require__(39),
+    listCacheGet = __webpack_require__(41),
+    listCacheHas = __webpack_require__(42),
+    listCacheSet = __webpack_require__(43);
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+module.exports = ListCache;
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+module.exports = listCacheClear;
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__(1);
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+module.exports = listCacheDelete;
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+module.exports = eq;
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__(1);
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+module.exports = listCacheGet;
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__(1);
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+module.exports = listCacheHas;
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var assocIndexOf = __webpack_require__(1);
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+module.exports = listCacheSet;
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__(8),
+    root = __webpack_require__(6);
+
+/* Built-in method references that are verified to be native. */
+var Map = getNative(root, 'Map');
+
+module.exports = Map;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__(2);
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+module.exports = mapCacheDelete;
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+module.exports = isKeyable;
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__(2);
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+module.exports = mapCacheGet;
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__(2);
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+module.exports = mapCacheHas;
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getMapData = __webpack_require__(2);
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+module.exports = mapCacheSet;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseToString = __webpack_require__(51);
+
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+
+module.exports = toString;
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Symbol = __webpack_require__(5),
+    arrayMap = __webpack_require__(52),
+    isArray = __webpack_require__(3),
+    isSymbol = __webpack_require__(4);
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isArray(value)) {
+    // Recursively convert values (susceptible to call stack limits).
+    return arrayMap(value, baseToString) + '';
+  }
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+module.exports = baseToString;
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.map` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ */
+function arrayMap(array, iteratee) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      result = Array(length);
+
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array);
+  }
+  return result;
+}
+
+module.exports = arrayMap;
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isSymbol = __webpack_require__(4);
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/**
+ * Converts `value` to a string key if it's not a string or symbol.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {string|symbol} Returns the key.
+ */
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol(value)) {
+    return value;
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+module.exports = toKey;
+
+
+/***/ })
+/******/ ]);
+});

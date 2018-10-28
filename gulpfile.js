@@ -37,6 +37,9 @@ gulp.task("webpack", ["concat"], function(callback) {
                 libraryTarget: "umd",
                 globalObject: "this"
             },
+            optimization: {
+                minimize: false
+            },
             module: {
                 rules: [
                     {
@@ -70,7 +73,7 @@ gulp.task("set-dev", function() {
     mode = "development";
 });
 gulp.task("set-build", function() {
-    mode = "production";
+    mode = "production";    
 });
 gulp.task("dev", ["set-dev", "webpack"]);
 gulp.task("build", ["set-build", "webpack"]);
