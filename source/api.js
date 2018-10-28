@@ -196,7 +196,7 @@ function createApi(language) {
 		},
 		validate (data, schema, checkRecursive, banUnknownProperties) {
 			this.root = data;
-			var def = defaultErrorReporter(currentLanguage);
+			var def = defaultErrorReporter(currentLanguage,languages);
 			var errorReporter = customErrorReporter ? function (error, data, schema) {
 				return customErrorReporter(error, data, schema) || def(error, data, schema);
 			} : def;
@@ -235,7 +235,7 @@ function createApi(language) {
 			});			
 		},
 		validateMultiple (data, schema, checkRecursive, banUnknownProperties) {
-			var def = defaultErrorReporter(currentLanguage);
+			var def = defaultErrorReporter(currentLanguage,languages);
 			var errorReporter = customErrorReporter ? function (error, data, schema) {
 				return customErrorReporter(error, data, schema) || def(error, data, schema);
 			} : def;

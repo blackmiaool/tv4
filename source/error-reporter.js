@@ -1,5 +1,6 @@
 const get = require("lodash/get");
-function defaultErrorReporter(language) {
+
+function defaultErrorReporter(language, languages) {
     language = language || 'en';
 
     var errorMessages = languages[language];
