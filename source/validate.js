@@ -1,4 +1,4 @@
-var ValidatorContext = function ValidatorContext(parent, collectMultiple, errorReporter, checkRecursive, trackUnknownProperties) {
+var ValidatorContext = function ValidatorContext(languages,parent, collectMultiple, errorReporter, checkRecursive, trackUnknownProperties) {
 	this.missing = [];
 	this.currentFormatValidation = null;
 	this.formatValidationQueue = [];
@@ -22,7 +22,7 @@ var ValidatorContext = function ValidatorContext(parent, collectMultiple, errorR
 		this.knownPropertyPaths = {};
 		this.unknownPropertyPaths = {};
 	}
-	this.errorReporter = errorReporter || defaultErrorReporter('en');
+	this.errorReporter = errorReporter || defaultErrorReporter('en',languages);
 	if (typeof this.errorReporter === 'string') {
 		throw new Error('debug');
 	}

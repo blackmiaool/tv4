@@ -138,7 +138,7 @@ function isTrustedUrl(baseUrl, testUrl) {
 
 function createApi(language) {
 	var languages = {};
-	var globalContext = new ValidatorContext();
+	var globalContext = new ValidatorContext(languages);
 	var currentLanguage;
 	var customErrorReporter;
 	var api = {
@@ -200,7 +200,7 @@ function createApi(language) {
 			var errorReporter = customErrorReporter ? function (error, data, schema) {
 				return customErrorReporter(error, data, schema) || def(error, data, schema);
 			} : def;
-			var context = new ValidatorContext(globalContext, false, errorReporter, checkRecursive, banUnknownProperties);
+			var context = new ValidatorContext(languages,globalContext, false, errorReporter, checkRecursive, banUnknownProperties);
 			if (typeof schema === "string") {
 				schema = {"$ref": schema};
 			}
@@ -239,7 +239,7 @@ function createApi(language) {
 			var errorReporter = customErrorReporter ? function (error, data, schema) {
 				return customErrorReporter(error, data, schema) || def(error, data, schema);
 			} : def;
-			var context = new ValidatorContext(globalContext, true, errorReporter, checkRecursive, banUnknownProperties);
+			var context = new ValidatorContext(languages,globalContext, true, errorReporter, checkRecursive, banUnknownProperties);
 			if (typeof schema === "string") {
 				schema = {"$ref": schema};
 			}
