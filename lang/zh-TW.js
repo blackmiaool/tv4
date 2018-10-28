@@ -1,5 +1,4 @@
-(function (global) {
-  var lang = {
+module.exports = {
     INVALID_TYPE: "無效類型：{type} (須為 {expected})",
     ENUM_MISMATCH: "{value} 並非可用值之一",
     ANY_OF_MISSING: "資料不符合任何 \"anyOf\" 模式",
@@ -35,21 +34,4 @@
     CIRCULAR_REFERENCE: "循環引用 ($refs): {urls}",
     // Non-standard validation options
     UNKNOWN_PROPERTY: "不明屬性 (不在 schema 中)"
-  };
-
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['../tv4'], function(tv4) {
-      tv4.addLanguage('zh-TW', lang);
-      return tv4;
-    });
-  } else if (typeof module !== 'undefined' && module.exports){
-    // CommonJS. Define export.
-    var tv4 = require('../tv4');
-    tv4.addLanguage('zh-TW', lang);
-    module.exports = tv4;
-  } else {
-    // Browser globals
-    global.tv4.addLanguage('zh-TW', lang);
-  }
-})(this);
+};
