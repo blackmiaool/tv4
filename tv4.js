@@ -2096,6 +2096,11 @@ function defaultErrorReporter(language, languages) {
       schema: schema,
       form: schema.form || {}
     });
+
+    if (schema.type === "object" && schema.properties && error.params.key) {
+      messageParams.schema = schema.properties[error.params.key];
+    }
+
     return messageTemplate.replace(/\{([^{}]*)\}/g, function (whole, varName) {
       var subValue = get(messageParams, varName);
 
