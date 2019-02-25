@@ -11,6 +11,11 @@ function defaultErrorReporter(language, languages) {
         if (typeof messageTemplate !== 'string') {
             return "Unknown error code " + error.code + ": " + JSON.stringify(error.messageParams);
         }
+
+        if (schema.type === "object" && schema.properties && error.params.key) {
+            schema = schema.properties[error.params.key];
+        }
+
         const messageParams = Object.assign({}, error.params, {
             data,
             schema,
@@ -18,9 +23,7 @@ function defaultErrorReporter(language, languages) {
             // messageTitle is just for message
             title: schema.messageTitle || schema.title,
         });
-        if (schema.type === "object" && schema.properties && error.params.key) {
-            messageParams.schema = schema.properties[error.params.key];
-        }
+
         return messageTemplate.replace(/\{([^{}]*)\}/g, function (whole, varName) {
             var subValue = get(messageParams, varName);
             if (typeof subValue === 'string' || typeof subValue === 'number') {
