@@ -2094,7 +2094,9 @@ function defaultErrorReporter(language, languages) {
     var messageParams = Object.assign({}, error.params, {
       data: data,
       schema: schema,
-      form: schema.form || {}
+      form: schema.form || {},
+      // messageTitle is just for message
+      title: schema.messageTitle || schema.title
     });
 
     if (schema.type === "object" && schema.properties && error.params.key) {

@@ -14,7 +14,9 @@ function defaultErrorReporter(language, languages) {
         const messageParams = Object.assign({}, error.params, {
             data,
             schema,
-            form: schema.form || {}
+            form: schema.form || {},
+            // messageTitle is just for message
+            title: schema.messageTitle || schema.title,
         });
         if (schema.type === "object" && schema.properties && error.params.key) {
             messageParams.schema = schema.properties[error.params.key];
