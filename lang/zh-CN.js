@@ -19,7 +19,7 @@ module.exports = {
     // Object errors
     OBJECT_PROPERTIES_MINIMUM: "字段数过少 ({propertyCount}), 最少 {minimum} 个",
     OBJECT_PROPERTIES_MAXIMUM: "字段数过多 ({propertyCount}), 最多 {maximum} 个",
-    OBJECT_REQUIRED: "缺少必要字段: {key}",
+    OBJECT_REQUIRED: "缺少必要字段: {schema.title}",
     OBJECT_ADDITIONAL_PROPERTIES: "不允许多余的字段",
     OBJECT_DEPENDENCY_KEY: "依赖失败 - 缺少键 {missing} (来自键: {key})",
     // Array errors
