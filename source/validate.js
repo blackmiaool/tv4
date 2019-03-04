@@ -223,7 +223,7 @@ ValidatorContext.prototype.reset = function () {
 	this.errors = [];
 };
 
-ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, schemaPathParts, dataPointerPath) {
+ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, schemaPathParts, dataPointerPath="",schemaPointerPath="") {
 	var topLevel;
 	schema = this.resolveRefs(schema);
 	if (!schema) {
@@ -288,15 +288,15 @@ ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, 
 	}
 
 	var errorCount = this.errors.length;
-	var error = this.validateBasic(data, schema, dataPointerPath)
-		|| this.validateNumeric(data, schema, dataPointerPath)
-		|| this.validateString(data, schema, dataPointerPath)
-		|| this.validateArray(data, schema, dataPointerPath)
-		|| this.validateObject(data, schema, dataPointerPath)
-		|| this.validateCombinations(data, schema, dataPointerPath)
-		|| this.validateHypermedia(data, schema, dataPointerPath)
-		|| this.validateFormat(data, schema, dataPointerPath)
-		|| this.validateDefinedKeywords(data, schema, dataPointerPath)
+	var error = this.validateBasic(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateNumeric(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateString(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateArray(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateObject(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateCombinations(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateHypermedia(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateFormat(data, schema, dataPointerPath,schemaPointerPath)
+		|| this.validateDefinedKeywords(data, schema, dataPointerPath,schemaPointerPath)
 		|| null;
 
 	if (topLevel) {
@@ -307,22 +307,21 @@ ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, 
 		this.scannedFrozen = [];
 		this.scannedFrozenSchemas = [];
 	}
+	//this.currentFormatValidation: promise
 	if(this.currentFormatValidation){
+		
 		const dataPathPartsThis=dataPathParts&&dataPathParts.slice()||[];
 		const schemaPathPartsThis=schemaPathParts&&schemaPathParts.slice()||[];
 		this.formatValidationQueue.push(this.currentFormatValidation.then((error)=>{
 			if (!error) {
 				return ;
 			}
-			const dataPathParts=dataPathPartsThis;
-			const schemaPathParts=schemaPathPartsThis;
+			const dataPathParts=dataPathPartsThis.slice();
+			const schemaPathParts=schemaPathPartsThis.slice();
 			while ((dataPathParts && dataPathParts.length) || (schemaPathParts && schemaPathParts.length)) {
 				var dataPart = (dataPathParts && dataPathParts.length) ? "" + dataPathParts.pop() : null;
-				var schemaPart = (schemaPathParts && schemaPathParts.length) ? "" + schemaPathParts.pop() : null;
-				if (error) {
-					error = error.prefixWith(dataPart, schemaPart);
-				}
-				this.prefixErrors(errorCount, dataPart, schemaPart);
+				var schemaPart = (schemaPathParts && schemaPathParts.length) ? "" + schemaPathParts.pop() : null;			
+				//prefix by format themselves
 			}	
 			return error;			
 		}));
@@ -348,7 +347,7 @@ ValidatorContext.prototype.validateAll = function (data, schema, dataPathParts, 
 	return this.handleError(error);
 };
 const asyncValidateFormatCache={};
-ValidatorContext.prototype.validateFormat = function (data, schema) {
+ValidatorContext.prototype.validateFormat = function (data, schema,dataPath,schemaPath) {
 	if (typeof schema.format !== 'string') {
 		return null;
 	}
@@ -360,9 +359,9 @@ ValidatorContext.prototype.validateFormat = function (data, schema) {
 		
 		const handleErrorMessage = (errorMessage) => {
 			if (typeof errorMessage === 'string' || typeof errorMessage === 'number') {
-				resolve(this.createError(ErrorCodes.FORMAT_CUSTOM, { message: errorMessage }, '', '/format', null, data, schema));
+				resolve(this.createError(ErrorCodes.FORMAT_CUSTOM, { message: errorMessage }, dataPath, schemaPath+'/format', null, data, schema));
 			} else if (errorMessage && typeof errorMessage === 'object') {
-				resolve(this.createError(ErrorCodes.FORMAT_CUSTOM, { message: errorMessage.message || "?" }, errorMessage.dataPath || '', errorMessage.schemaPath || "/format", null, data, schema));
+				resolve(this.createError(ErrorCodes.FORMAT_CUSTOM, { message: errorMessage.message || "?" }, errorMessage.dataPath || dataPath, errorMessage.schemaPath || schemaPath+"/format", null, data, schema));
 			} else {
 				resolve(null);
 			}

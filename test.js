@@ -6,7 +6,7 @@ tv4.addFormat("a", {
     validator() {
         return new Promise(resolve => {
             setTimeout(() => {
-                resolve();
+                resolve("sdf");
                 // resolve();
             }, 1000);
         });
@@ -29,10 +29,15 @@ var schema = {
         c: {
             title: "sdf",
             type: "array",
-            minItems:5,
-            maxItems: 5,
             items: {
-                type: 'number',
+                type: 'object',
+                properties:{
+                    d:{
+                        type:'string',
+                        format:'a',
+                        // minLength:5
+                    }
+                },
                 title: "d"
             }
         }
@@ -42,7 +47,9 @@ function main() {
     tv4.validateResult({
         // a: 1,
         b: 2,
-        c: [1, 2]
+        c:[{
+            d:"1"
+        }]
     }, schema).then(res => {
         console.log(res);
     });

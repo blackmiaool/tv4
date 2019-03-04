@@ -1,16 +1,17 @@
 ValidatorContext.prototype.validateObject = function validateObject(
     data,
     schema,
-    dataPointerPath
+    dataPointerPath,
+    schemaPointerPath,
 ) {
     if (typeof data !== "object" || data === null || Array.isArray(data)) {
         return null;
     }
     return (
-        this.validateObjectMinMaxProperties(data, schema, dataPointerPath) ||
-        this.validateObjectRequiredProperties(data, schema, dataPointerPath) ||
-        this.validateObjectProperties(data, schema, dataPointerPath) ||
-        this.validateObjectDependencies(data, schema, dataPointerPath) ||
+        this.validateObjectMinMaxProperties(data, schema, dataPointerPath,schemaPointerPath) ||
+        this.validateObjectRequiredProperties(data, schema, dataPointerPath,schemaPointerPath) ||
+        this.validateObjectProperties(data, schema, dataPointerPath,schemaPointerPath) ||
+        this.validateObjectDependencies(data, schema, dataPointerPath,schemaPointerPath) ||
         null
     );
 };
@@ -109,7 +110,8 @@ ValidatorContext.prototype.validateObjectRequiredProperties = function validateO
 ValidatorContext.prototype.validateObjectProperties = function validateObjectProperties(
     data,
     schema,
-    dataPointerPath
+    dataPointerPath,
+    schemaPointerPath,
 ) {
     var error;
     for (var key in data) {
@@ -117,6 +119,7 @@ ValidatorContext.prototype.validateObjectProperties = function validateObjectPro
             dataPointerPath +
             "/" +
             key.replace(/~/g, "~0").replace(/\//g, "~1");
+        const keySchemaPointerPath=schemaPointerPath+'/properties/'+key;
         var foundMatch = false;
         if (
             schema.properties !== undefined &&
@@ -129,7 +132,8 @@ ValidatorContext.prototype.validateObjectProperties = function validateObjectPro
                     schema.properties[key],
                     [key],
                     ["properties", key],
-                    keyPointerPath
+                    keyPointerPath,
+                    keySchemaPointerPath
                 ))
             ) {
                 return error;
@@ -146,7 +150,8 @@ ValidatorContext.prototype.validateObjectProperties = function validateObjectPro
                             schema.patternProperties[patternKey],
                             [key],
                             ["patternProperties", patternKey],
-                            keyPointerPath
+                            keyPointerPath,
+                            keySchemaPointerPath
                         ))
                     ) {
                         return error;
@@ -182,7 +187,8 @@ ValidatorContext.prototype.validateObjectProperties = function validateObjectPro
                             schema.additionalProperties,
                             [key],
                             ["additionalProperties"],
-                            keyPointerPath
+                            keyPointerPath,
+                            keySchemaPointerPath
                         ))
                     ) {
                         return error;
