@@ -1,7 +1,7 @@
 ValidatorContext.prototype.validateArray = function validateArray(data, schema, dataPointerPath,schemaPointerPath) {
 	if (!Array.isArray(data)) {
 		return null;
-	}
+	}		
 	return this.validateArrayLength(data, schema, dataPointerPath,schemaPointerPath)
 		|| this.validateArrayUniqueItems(data, schema, dataPointerPath,schemaPointerPath)
 		|| this.validateArrayItems(data, schema, dataPointerPath,schemaPointerPath)

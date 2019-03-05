@@ -34,7 +34,7 @@ var ValidatorContext = function ValidatorContext(languages,parent, collectMultip
 	}
 };
 ValidatorContext.prototype.getFormatValidationResults = function(){
-	const ret= Promise.all(this.formatValidationQueue);
+	const ret= Promise.all(this.formatValidationQueue);	
 	this.formatValidationQueue.length=0;
 	return ret;
 };

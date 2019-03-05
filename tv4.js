@@ -2358,6 +2358,9 @@ function createApi(language) {
 
         if (!error) {
           context.getFormatValidationResults().then(function (errors) {
+            errors = errors.filter(function (a) {
+              return a;
+            });
             error = errors[0];
             handleError(error);
           });
@@ -2394,7 +2397,7 @@ function createApi(language) {
 
       return context.getFormatValidationResults().then(function (errors) {
         errors = errors.filter(function (e) {
-          return e !== undefined;
+          return e;
         });
         var result = {};
         result.errors = context.errors.concat(errors);

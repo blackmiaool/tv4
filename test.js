@@ -3,13 +3,11 @@ const cn = require("./lang/zh-CN");
 // tv4.addLanguage(cn);
 tv4.language("zh-CN");
 tv4.addFormat("a", {
-    validator() {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve("sdf");
-                // resolve();
-            }, 1000);
-        });
+    validator(value) {
+        console.log(value);
+        if(value!=='1'){
+            return 'err!'
+        }
     },
     cache: true
 });
@@ -34,7 +32,7 @@ var schema = {
                 properties:{
                     d:{
                         type:'string',
-                        format:'a',
+                        format:'a',                        
                         // minLength:5
                     }
                 },
@@ -49,6 +47,8 @@ function main() {
         b: 2,
         c:[{
             d:"1"
+        },{
+            d:"2"
         }]
     }, schema).then(res => {
         console.log(res);
